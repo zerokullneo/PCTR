@@ -1,0 +1,17 @@
+!SESSION 2015-08-27 21:22:34.851 -----------------------------------------------
+eclipse.buildId=4.5.0.I20150603-2000
+java.version=1.7.0_79
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=es_ES
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2015-08-27 21:24:48.745
+!MESSAGE pingUsageServer failed
+!STACK 0
+java.lang.NullPointerException
+	at com.android.ide.eclipse.adt.internal.welcome.AdtStartup.getVersion(AdtStartup.java:319)
+	at com.android.ide.eclipse.adt.internal.welcome.AdtStartup.pingUsageServer(AdtStartup.java:329)
+	at com.android.ide.eclipse.adt.internal.welcome.AdtStartup.access$2(AdtStartup.java:327)
+	at com.android.ide.eclipse.adt.internal.welcome.AdtStartup$4.run(AdtStartup.java:304)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)

@@ -1,0 +1,6 @@
+//sencillo ficheros de politica de segurida para pruebas
+grant
+{
+	//rango de puertos de escucha permitidos
+	permission java.net.SocketPermission "*:1099-2002", "connect, accept, resolve";
+};
