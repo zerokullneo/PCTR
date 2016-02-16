@@ -36,12 +36,11 @@ public class cPiMonteCarlo
      public static void main(String[] args) throws Exception
      {
 	int puntos = 0;
-	int op;
-	boolean exit = true;
+	int op = 0;
 	Scanner r = new Scanner(System.in);
 	iPiMonteCarlo RefObRemoto = (iPiMonteCarlo)Naming.lookup("//localhost/Servidor");
 
-	while(exit==true)
+	while(op != 3)
 	{
 	     System.out.print("-------MENU------."
 		   + "Indique que desea hacer:"

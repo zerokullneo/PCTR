@@ -98,7 +98,7 @@ public class sLibro extends UnicastRemoteObject implements iLibro
      {
 	Libro lib = new Libro("Titulo inexistente", "Autor inexistente");
 
-	for(int i=0;i<cont;i++)
+	for(int i = 0; i < cont; i++)
 	     if(A.equals(BD[i].VerAutor()))
 		lib = BD[i];
 
