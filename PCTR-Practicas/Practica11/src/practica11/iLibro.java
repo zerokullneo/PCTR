@@ -25,15 +25,15 @@ package practica11;
  */
 
 import java.rmi.*;
+
 /**Descripcion
  * 
  */
-public interface iLibro extends Remote {
-
-    public void insertar(Libro l) throws RemoteException;
-    public void eliminar(Libro l) throws RemoteException;
-    public void consultarBD() throws RemoteException;
-    public Libro consultarA(String A) throws RemoteException;
-    public Libro consultarN(String N) throws RemoteException;
-
+public interface iLibro extends Remote
+{
+     public void insertar(Libro l) throws RemoteException;
+     public void eliminar(Libro l) throws RemoteException;
+     public void consultarBD() throws RemoteException;
+     public Libro consultarA(String A) throws RemoteException;
+     public Libro consultarN(String N) throws RemoteException;
 }

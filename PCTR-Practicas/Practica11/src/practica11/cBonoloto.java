@@ -27,37 +27,39 @@ package practica11;
 import java.util.*;
 import java.net.*;
 import java.rmi.*;
+
 /**Descripcion
  * 
  */
-public class cBonoloto {
+public class cBonoloto
+{
+     public static void main(String[]args)
+     {
+	try
+	{
+	     iBonoloto ORemoto = (iBonoloto)Naming.lookup("//localhost/Servidor");
+	     ORemoto.resetServidor();
+	     int [] a = new int[6];
+	     Scanner p = new Scanner(System.in);
 
-    public static void main(String[]args){
-    	try{
-	    	iBonoloto ORemoto = (iBonoloto)Naming.lookup("//localhost/Servidor");
+	     System.out.println("Introduce apuesta:");
 
-	    	ORemoto.resetServidor();
+	     for(int i = 0; i < 6; i++)
+		a[i] = p.nextInt();
 
-	    	int [] a = new int[6];
+	     boolean acierto = ORemoto.compApuesta(a);
 
-	    	Scanner p = new Scanner(System.in);
+	     if(acierto)
+		System.out.println("Apuesta premiada");
+	     else
+		System.out.println("Apuesta no premiada");
 
-	    	System.out.println("Introduce apuesta:");
+	}
+	catch(Exception e)
+	{
+	     System.out.println("Problema en cliente..." + e);
+	}
 
-	    	for(int i=0;i<6;i++){
-	    		a[i] = p.nextInt();
-	    	}
-	    	boolean acierto = ORemoto.compApuesta(a);
-
-	    	if(acierto){
-	    		System.out.println("Apuesta premiada");
-	    	}
-	    	else{
-	    		System.out.println("Apuesta no premiada");
-	    	}
-    	}catch(Exception e){System.out.println("Problema en cliente.");}
-    	System.out.println("Cliente Terminado.");
-    }
-
-
+	System.out.println("Cliente Terminado.");
+     }
 }

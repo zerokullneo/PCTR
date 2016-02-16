@@ -23,13 +23,14 @@ package practica11;
  * Programacion Concurrente y de Tiempo Real
  * Area de CC. de la Computacion e I.A.
  */
+
 import java.rmi.*;
+
 /**Descripcion
  * 
  */
 public interface iBonoloto extends Remote
 {
-  public void resetServidor() throws RemoteException;
-  public boolean compApuesta(int[] apuesta)  throws RemoteException;
-
+     public void resetServidor() throws RemoteException;
+     public boolean compApuesta(int[] apuesta)  throws RemoteException;
 }

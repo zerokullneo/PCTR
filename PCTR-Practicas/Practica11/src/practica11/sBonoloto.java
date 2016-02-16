@@ -23,57 +23,63 @@ package practica11;
  * Programacion Concurrente y de Tiempo Real
  * Area de CC. de la Computacion e I.A.
  */
+
 import java.util.*;
 import java.rmi.registry.*;
 import java.rmi.server.*;
 import java.rmi.*;
 import java.net.*;
+
 /**Descripcion
  * 
  */
-public class sBonoloto extends UnicastRemoteObject implements iBonoloto {
+public class sBonoloto extends UnicastRemoteObject implements iBonoloto
+{
+     public int [] Apuesta = new int[6];
+     private final int nNumeros = 49;
 
-	public int [] Apuesta = new int[6];
-	private final int nNumeros = 49;
+     public sBonoloto() throws RemoteException
+     {
+	super();
+     }
 
-    public sBonoloto() throws RemoteException {
-    	super();
-    }
+     public void resetServidor() throws RemoteException
+     {
+	Random p = new Random();
 
-    public void resetServidor() throws RemoteException{
+	for(int i = 0; i < Apuesta.length; i++)
+	{
+	     int n = p.nextInt(nNumeros);
+	     Apuesta[i] = n + 1;
+	     System.out.println(Apuesta[i]);
+	}
+     }
 
-    	 Random p = new Random();
+     public boolean compApuesta(int[] apuesta) throws RemoteException
+     {
+	Arrays.sort(Apuesta);
+	Arrays.sort(apuesta);
 
-    	 for(int i=0;i<Apuesta.length;i++){
-    	 	int n = p.nextInt(nNumeros);
-    	 	Apuesta[i] = n+1;
-    	 	System.out.println(Apuesta[i]);
-    	 }
-    }
+	for(int i = 0; i < Apuesta.length; i++)
+	     if(Apuesta[i] != apuesta[i])
+		return false;
 
-    public boolean compApuesta(int[] apuesta)  throws RemoteException{
-    	Arrays.sort(Apuesta);
-    	Arrays.sort(apuesta);
+	return true;
+     }
 
-    	for(int i=0;i<Apuesta.length;i++){
-    		if(Apuesta[i]!=apuesta[i]){
-    			return false;
-    			}
-    	}
-    		return true;
-    	}
+     public static void main(String[]args)
+     {
+	try
+	{
+	     iBonoloto ORemoto = new sBonoloto();
 
-    public static void main(String[]args){
+	     Naming.bind("Servidor", ORemoto);
 
-    	try{
-    		iBonoloto ORemoto = new sBonoloto();
-
-    		Naming.bind("Servidor", ORemoto);
-
-    		System.out.println("Servidor preparado");
-    	}catch (Exception e){
-    		System.out.println("Problemas en el servidor.");
-    	}
-    }
-
+	     System.out.println("Servidor preparado");
+	}
+	catch (Exception e)
+	{
+	     System.out.println("Problemas en el servidor..." + e);
+	}
+     }
 }

@@ -23,28 +23,32 @@ package practica11;
  * Programacion Concurrente y de Tiempo Real
  * Area de CC. de la Computacion e I.A.
  */
+
 import java.io.Serializable.*;
+
 /**Descripcion
  * 
  */
-public class Libro implements java.io.Serializable{
+public class Libro implements java.io.Serializable
+{
+     String Autor;
+     String Titulo;
 
-	String Autor;
-	String Titulo;
+     public Libro() {}
 
-    public Libro() {}
+     public Libro(String tit, String aut)
+     {
+	this.Titulo = tit;
+	this.Autor = aut;
+     }
 
-    public Libro(String Titulo, String Autor){
-    	this.Titulo = Titulo;
-    	this.Autor = Autor;
-    }
+     public String VerAutor()
+     {
+	return Autor;
+     }
 
-    public String VerAutor(){
-    	return Autor;
-    }
-
-    public String VerTitulo(){
-    	return Titulo;
-    }
-
+     public String VerTitulo()
+     {
+	return Titulo;
+     }
 }

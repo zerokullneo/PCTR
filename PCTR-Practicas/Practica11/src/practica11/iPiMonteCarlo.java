@@ -23,15 +23,16 @@ package practica11;
  * Programacion Concurrente y de Tiempo Real
  * Area de CC. de la Computacion e I.A.
  */
+
 import java.net.*;
 import java.io.*;
 import java.rmi.*;
+
 /**Descripcion
  * 
  */
-public interface iPiMonteCarlo
- extends Remote
- {
- 	public void reset() throws RemoteException;
- 	public void masPuntos(int nPuntos) throws RemoteException;
- }
+public interface iPiMonteCarlo extends Remote
+{
+     public void reset() throws RemoteException;
+     public void masPuntos(int nPuntos) throws RemoteException;
+}
