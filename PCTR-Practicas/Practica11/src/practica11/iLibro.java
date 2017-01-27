@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package practica11;
+//package practica11;
 
 /**Fichero iLibro.java
  * @author Jose Manuel Barba Gonzalez
@@ -29,7 +29,7 @@ import java.rmi.*;
 /**Descripcion
  * 
  */
-public interface iLibro extends Remote
+interface iLibro extends Remote
 {
      public void insertar(Libro l) throws RemoteException;
      public void eliminar(Libro l) throws RemoteException;

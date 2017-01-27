@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package practica11;
+//package practica11;
 
 /**Fichero cPiMonteCarlo.java
  * @author Jose Manuel Barba Gonzalez
@@ -36,18 +36,18 @@ public class cPiMonteCarlo
      public static void main(String[] args) throws Exception
      {
 	int puntos = 0;
-	int op = 0;
+	int op;
 	Scanner r = new Scanner(System.in);
 	iPiMonteCarlo RefObRemoto = (iPiMonteCarlo)Naming.lookup("//localhost/Servidor");
 
-	while(op != 3)
+	do
 	{
-	     System.out.print("-------MENU------."
-		   + "Indique que desea hacer:"
-		   + "1. Añadir mas puntos a la aproximacion"
-		   + "2. Resetear la aproximacion"
-		   + "3. Salir"
-		   + "OPCION: ");
+		System.out.println("-------MENU------.");
+		System.out.println("Indique que desea hacer:");
+		System.out.println("1. Añadir mas puntos a la aproximacion");
+		System.out.println("2. Resetear la aproximacion");
+		System.out.println("0. Salir");
+		System.out.println("OPCION: ");
 	     op = r.nextInt();
 
 	     switch(op)
@@ -63,6 +63,6 @@ public class cPiMonteCarlo
 		case 3:
 		     break;
 	     }
-	}
+	}while(op != 0);
      }
 }

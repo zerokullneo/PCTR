@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package practica11;
+//package practica11;
 
 /**Fichero iPiMonteCarlo.java
  * @author Jose Manuel Barba Gonzalez

@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package practica11;
+//package practica11;
 
 /**Fichero sBonoloto.java
  * @author Jose Manuel Barba Gonzalez
@@ -73,7 +73,7 @@ public class sBonoloto extends UnicastRemoteObject implements iBonoloto
 	{
 	     iBonoloto ORemoto = new sBonoloto();
 
-	     Naming.bind("Servidor", ORemoto);
+	     Naming.bind("//localhost/Servidor", ORemoto);
 
 	     System.out.println("Servidor preparado");
 	}

@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package practica11;
+//package practica11;
 
 /**Fichero sLibro.java
  * @author Jose Manuel Barba Gonzalez
@@ -24,10 +24,10 @@ package practica11;
  * Area de CC. de la Computacion e I.A.
  */
 
-import java.util.*;
-import java.rmi.registry.*;
-import java.rmi.server.*;
+//import java.util.*;
 import java.rmi.*;
+import java.rmi.server.*;
+import java.rmi.registry.*;
 import java.net.*;
 
 /**Descripcion
@@ -41,7 +41,7 @@ public class sLibro extends UnicastRemoteObject implements iLibro
 
      public sLibro() throws RemoteException
      {
-	super();
+	//super();
      }
 
      public synchronized void insertar(Libro l) throws RemoteException
@@ -116,13 +116,14 @@ public class sLibro extends UnicastRemoteObject implements iLibro
 	return lib;
      }
 
-     public static void main(String[]args)
+     public static void main(String[]args) throws Exception
      {
 	try
 	{
 	     iLibro ORemoto = new sLibro();
 
-	     Naming.bind("Servidor", ORemoto);
+	     //Registry registro = LocateRegistry.createRegistry(3005);
+	     Naming.rebind("//localhost:3005/Servidor", ORemoto);
 	     
 	     System.out.println("Servidor preparado");
 	}

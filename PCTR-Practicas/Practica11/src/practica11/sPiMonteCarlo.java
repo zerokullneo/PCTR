@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package practica11;
+//package practica11;
 
 /**Fichero sPiMonteCarlo.java
  * @author Jose Manuel Barba Gonzalez
@@ -70,7 +70,7 @@ public class sPiMonteCarlo  extends UnicastRemoteObject implements iPiMonteCarlo
      public static void main(String[] args) throws Exception
      {
 	iPiMonteCarlo ObRemoto = new sPiMonteCarlo(); //Se crea un objeto remoto
-	Naming.bind("Servidor",ObRemoto); //Se registra el servicio
+	Naming.bind("//localhost/Servidor",ObRemoto); //Se registra el servicio
 	System.out.println("APROXIMACION DEL NUMERO PI POR EL METODO DE MONTE CARLO");
      }
 }
