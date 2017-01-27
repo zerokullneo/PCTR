@@ -40,20 +40,40 @@ public class raizporBiseccion
 	}
 
 	//a+b/2
+	public double RaizBiseccion(double x, int op)
+	{
+	     double res = 0;
+	     switch (op)
+	     {
+		case 1:
+		     res = Math.cos(x) - Math.pow(x, 3);
+		     break;
+		case 2:
+		     res = Math.pow(x, 2) - 5;
+		     break;
+	     }
+	     
+	     return res;
+	}
 	
 	public static void main (String []args)
 	{
 		raizporBiseccion F1;//cos(x) - x^3 = 0
 		raizporBiseccion F2;//x^2 - 5 = 0
 		int a1=0, a2=2, b1=1, b2=3;
-		double x;
+		double x,r1,r2;
 
 		Scanner TI = new Scanner(System.in);
+		System.out.println("Introduzca x: ");
+		x = TI.nextDouble();
 
 		F1 = new raizporBiseccion(a1,b1);
 		F2 = new raizporBiseccion(a2,b2);
+		
+		r1 = F1.RaizBiseccion(x, 1);
+		r2 = F2.RaizBiseccion(x, 2);
 
-		System.out.println("cuadrado de 5: " + Math.sqrt(5));
-		System.out.println("cubica de 1: " + Math.cbrt(Math.cos(1)));
+		System.out.println("cos, cubica de " + x + ": " + r1);
+		System.out.println("cuadrado    de " + x + ": " + r2);
 	}
 }

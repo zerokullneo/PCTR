@@ -46,7 +46,14 @@ public class E31 extends Thread
 	     mi_thread=new E31();
 	     i--;
 	     mi_thread.start();
-	     try{mi_thread.join();}catch (InterruptedException e){}
+	     try
+	     {
+		mi_thread.join();
+	     }
+	     catch (InterruptedException e)
+	     {
+		System.out.println("Error E31..." + e);
+	     }
 	}
      }
 

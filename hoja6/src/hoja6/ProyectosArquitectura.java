@@ -89,4 +89,16 @@ public class ProyectosArquitectura extends Thread
 	     }
 	}
      }
+     
+     public static void main(String[] args)
+     {
+	new ProyectosArquitectura(0).start();
+	new ProyectosArquitectura(0).start();
+	new ProyectosArquitectura(0).start();
+	new ProyectosArquitectura(1).start();
+	new ProyectosArquitectura(0).start();
+	new ProyectosArquitectura(1).start();
+	new ProyectosArquitectura(0).start();
+	new ProyectosArquitectura(1).start();
+     }
 }

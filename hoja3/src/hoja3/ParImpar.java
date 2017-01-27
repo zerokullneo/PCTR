@@ -29,31 +29,32 @@ package hoja3;
  */
 public class ParImpar extends Thread
 {
-     private int sw;
-     private int n;
+    private int sw;
+    private int n;
 	
-     public ParImpar(int tip, int num)
-     {
+    public ParImpar(int tip, int num)
+    {
 	sw = tip;
-	n = num;
-     }
-	
-     public int leeSW(){return sw;}
-     public int leeN(){return n;}
+        n = num;
+    }
 
-     public void run()
-     {
-	for(int i = 0; i < n; i++)
-	     switch(sw)
-	     {
-		case 0:
-		     if(i % 2 == 0)
-		     System.out.println(getName() + " - Par... " + i);
-		     break;
+    public int leeSW(){return sw;}
+
+    public int leeN(){return n;}
+
+    public void run()
+    {
+        for(int i = 0; i < n; i++)
+            switch(sw)
+            {
+                case 0:
+                    if(i % 2 == 0)
+		    System.out.println(getName() + " - Par... " + i);
+		    break;
 		case 1:
-		     if(i % 2 != 0)
-		     System.out.println(getName() + " - Impar... " + i);
-		     break;
-	     }
-     }
+		    if(i % 2 != 0)
+		    System.out.println(getName() + " - Impar... " + i);
+		    break;
+	    }
+    }
 }

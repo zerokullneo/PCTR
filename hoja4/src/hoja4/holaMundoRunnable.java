@@ -15,6 +15,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+package hoja4;
+
 /**Fichero holaMundoRunnable.java
  * @author Jose Manuel Barba Gonzalez
  * @version 1.0
@@ -27,7 +29,7 @@
  */
 public class holaMundoRunnable implements Runnable
 {
-     private static int prioriti = 0;
+     private static int prioriti = 1;
      
      public holaMundoRunnable(int p)
      {
@@ -37,7 +39,7 @@ public class holaMundoRunnable implements Runnable
 
      public void run()
      {
-	System.out.println("Hola Mundo...");
+	System.out.println("Hola Mundo..." + Thread.currentThread().getPriority());
      }
 
      public static void main(String[] args)
@@ -47,7 +49,7 @@ public class holaMundoRunnable implements Runnable
 	
 	for(int i = 0; i < 10; i++)
 	{
-	     hilo[i] = new holaMundoRunnable(i);
+	     hilo[i] = new holaMundoRunnable(i+1);
 	     new Thread(hilo[i]).start();
 	}
      }

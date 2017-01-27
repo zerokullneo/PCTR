@@ -15,6 +15,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+package hoja4;
+
 /**Fichero ParImparRunnable.java
  * @author Jose Manuel Barba Gonzalez
  * @version 1.0
@@ -29,12 +31,13 @@ public class ParImparRunnable implements Runnable
 {
      private int sw;
      private int n;
-     private static int prioriti = 0;
+     private static int prioriti;
 	
      public ParImparRunnable(int tip, int num, int p)
      {
 	sw = tip;
 	n = num;
+	prioriti = p;
 	Thread.currentThread().setPriority(prioriti);
      }
 

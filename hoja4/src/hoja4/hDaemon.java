@@ -15,6 +15,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+package hoja4;
+
 /**Fichero hDaemon.java
  * @author Jose Manuel Barba Gonzalez
  * @version 1.0
@@ -27,7 +29,7 @@
  */
 public class hDaemon implements Runnable
 {
-     private static int prioriti = 0;
+     private static int prioriti = 3;
      
      public hDaemon(int p)
      {
@@ -38,14 +40,18 @@ public class hDaemon implements Runnable
      {
 	Thread.currentThread().setPriority(prioriti);
 	Thread T = Thread.currentThread();
-	try{
-	while(true)
+	try
 	{
-	     T.sleep(1000000000);
-	     System.out.println("Esperando Evento...");
+	     while(true)
+	     {
+		T.sleep(1000000000);
+		System.out.println("Esperando Evento...");
+	     }
 	}
+	catch(InterruptedException e)
+	{
+	     System.out.println("Error en sleep(): " + e);
 	}
-	catch(InterruptedException e){System.out.println("Error en sleep(): "+e);}
      }
 
      public static void main(String[] args)

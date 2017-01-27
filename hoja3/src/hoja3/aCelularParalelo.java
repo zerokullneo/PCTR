@@ -27,6 +27,65 @@ package hoja3;
 /**Descripcion
  * 
  */
-public class aCelularParalelo {
+public class aCelularParalelo extends Thread
+{
+     static int[][] A;
+     static int generaciones;
+     int inicio, fin;
+    
+     public aCelularParalelo(int in, int fi)
+     {
+	inicio = in; fin = fi;
+	
+     }
+    
+     static void inicializar(int gen, int tam, int n)
+     {
+	generaciones = gen;
+	A = new int[generaciones][tam];
+	for(int k = 0; k < generaciones; k++)
+	    for(int i = 0; i < tam; i++)
+	    {
+		A[0][i] = (int)(Math.random()*n);
+	    }
+     }
 
+    void Celular()
+    {
+        for(int i = 0; i < A.length; i++)
+        {
+            for(int j = 0; j < A[i].length; j++)
+                if(j == 0 && i > 1)
+                    A[i][j] = (A[i-1][A[i].length-1] + A[i-1][j] + A[i-1][j+1]) % 3;
+                else if(j == A[i].length)
+                    A[i][j] = (A[i-1][j-1] + A[i-1][j] + A[i-1][0]) % 3;
+	      else if(i > 1 && (j > 1 && j < A.length))
+                    A[i][j] = (A[i-1][j-1] + A[i-1][j] + A[i-1][j+1]) % 3;
+        }
+    }
+    
+     public void run()
+     {
+	for(int i = 0; i < generaciones; i++)
+	     Celular();
+     }
+
+    void visualizar()
+    {
+        for(int i = 0; i < A.length; i++)
+        {
+            for(int j = 0; j < A[i].length; j++)
+                System.out.print(A[i][j] + " ");
+            System.out.println("");
+        }
+    }
+
+    public static void main(String[] args)
+    {
+        aCelularParalelo autcelA= new aCelularParalelo(0,5);
+        aCelularParalelo autcelB= new aCelularParalelo(5,10);
+        autcelA.inicializar(5,10,3);
+        autcelA.Celular();
+        autcelA.visualizar();
+    }
 }

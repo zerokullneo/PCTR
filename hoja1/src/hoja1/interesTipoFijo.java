@@ -32,24 +32,24 @@ import java.util.*;
 public class interesTipoFijo
 {
      public static void main (String []args)	
-     {	//caracter = TI.next().charAt(0);
-		double tipo, cantidad, a;
+     {
+	//caracter = TI.next().charAt(0);
+	float tipo, cantidad, a;
+	Scanner TI = new Scanner(System.in);
 
-		Scanner TI = new Scanner(System.in);
+	do
+	{
+	     System.out.println("Introducir valor Tipo Interes, min(0,5%)");
+	     tipo = TI.nextFloat();
+	}while(tipo < 0.5);
 
-		do
-		{
-			System.out.println("Introducir valor Tipo Interes, min(0,5%)");
-			tipo = TI.nextDouble();
-		}while(tipo < 0.5);
+	do
+	{
+	     System.out.println("Cantidad a Prestar, min(100€):");
+	     cantidad = TI.nextFloat();
+	}while(cantidad < 100);
 
-		do
-		{
-			System.out.println("Cantidad a Prestar, min(100€):");
-			cantidad = TI.nextDouble();
-		}while(cantidad < 100);
-
-		a = (cantidad + ((cantidad*tipo)/100))/6;
-		System.out.println("Mensualidad: " + a);
-	}
+	a = (cantidad + ((cantidad*tipo)/100))/6;
+	System.out.println("Mensualidad: " + a);
+     }
 }
