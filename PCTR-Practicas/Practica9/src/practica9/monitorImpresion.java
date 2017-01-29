@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package practica9;
+//package practica9;
 
 /**Fichero monitorImpresion.java
  * @author Jose Manuel Barba Gonzalez
@@ -30,22 +30,20 @@ package practica9;
 public class monitorImpresion
 {
      private int numSlots = 0;
-     private int tamano = 1;
+     private final int tamano = 3;
      private int [] buffer = null;
-     private int putIn = 0, takeOut = 0;
+     private int putIn = 1, takeOut = 1;
      private int cont = 0;
-     private monitorImpresion buffer1 = new monitorImpresion(3);
-     private monitorImpresion buffer2 = new monitorImpresion(3);
-     private monitorImpresion buffer3 = new monitorImpresion(3);
      
-     public monitorImpresion(int nslots)
-     {
+    public monitorImpresion(int nslots)
+    {
 	numSlots = nslots;
 	buffer = new int[numSlots];
-     }
+    }
 
-     public synchronized void insertar(int valor)
-     {
+    public synchronized int insertar()
+    {
+        int valor;
 	while(cont == numSlots)
 	try
 	{
@@ -54,56 +52,59 @@ public class monitorImpresion
 	catch(InterruptedException e)
 	{
 	     System.out.println("ERROR Insertar..." + e);
+             return -1;
 	}
 
-	buffer[putIn] = valor;
-	putIn = (putIn + 1) % numSlots;
+	valor = buffer[putIn];
 	cont++;
 	notifyAll();
+        return valor;
      }
 
-     public synchronized int extraer()
+     public synchronized void extraer(int valor)
      {
-	int valor;
 	while (cont == 0)
-	     try
-	     {
+	    try
+	    {
 		wait();
-	     }
-	     catch(InterruptedException e)
-	     {
+	    }
+	    catch(InterruptedException e)
+	    {
 		System.out.println("ERROR Extraer..." + e);
-	     }
+	    }
 
-	valor = buffer[takeOut];
-	takeOut = (takeOut + 1) % numSlots;
+	buffer[takeOut] = valor;
 	cont--;
 	notifyAll();
-
-	return valor;
      }
 
-     public void ImpresoraA()
-     {
-	for(int x = 0; x < tamano; x++)
-	     buffer1.insertar(numSlots);
-	
-	numSlots = buffer1.extraer();
-     }
+    public synchronized void ImpresoraA()
+    {
+        for(int x = 0; x < tamano; x++)
+        {
+            numSlots = insertar();
+            System.out.println("Imprimiendo Impresora A...");
+        }
+        extraer(numSlots);
+    }
 
-     public void ImpresoraB()
-     {
-	for(int x = 0; x < tamano; x++)
-	     buffer2.insertar(numSlots);
-	
-	numSlots = buffer2.extraer();
-     }
+    public synchronized void ImpresoraB()
+    {
+        for(int x = 0; x < tamano; x++)
+        {
+	    numSlots = insertar();
+            System.out.println("Imprimiendo Impresora B...");
+        }
+	extraer(numSlots);
+    }
 
-     public void ImpresoraC()
-     {
-	for(int x = 0; x < tamano; x++)
-	     buffer3.insertar(numSlots);
-	     
-	numSlots = buffer3.extraer();
+    public synchronized void ImpresoraC()
+    {
+        for(int x = 0; x < tamano; x++)
+        {
+           numSlots = insertar();
+           System.out.println("Imprimiendo Impresora C...");
+        }
+	extraer(numSlots);
     }
 }

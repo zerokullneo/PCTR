@@ -34,23 +34,23 @@ import java.util.Scanner;
  */
 public class ficheroSeguro 
 {
-     private String dir;
-     private String datos;
-     private RandomAccessFile volcado;
-     private Integer j;
+    private String dir;
+    private String datos;
+    private RandomAccessFile volcado;
+    private Integer j;
 
-     public ficheroSeguro(String d, int i)
-     {
+    public ficheroSeguro(String d, int i)
+    {
 	dir=d;
 	j=new Integer(i);
-     }
+    }
 
-     public void run()
-     {
-	synchronized(this)
+    public void run()
+    {
+        synchronized(this)
 	{
-	     try
-	     {
+            try
+	    {
 		String name = j.toString() + dir + ".html";
 		volcado = new RandomAccessFile(name, "rw");
 		do
@@ -60,16 +60,16 @@ public class ficheroSeguro
 			volcado.writeChars(datos);
 		}while(datos!=null);
 		volcado.close();
-	     }
-	     catch(IOException e)
-	     {
-		System.out.println("ERROR..." + e);
-	     }
+	    }
+            catch(IOException e)
+	    {
+                System.out.println("ERROR..." + e);
+	    }
 	}
-     }
+    }
 
-     public static void main(String[] args) throws Exception
-     {
+    public static void main(String[] args) throws Exception
+    {
 	long iniTiempo=0;
 	LinkedList<ficheroSeguro> tareas = new LinkedList<ficheroSeguro>();
 	int nNuc = Runtime.getRuntime().availableProcessors();
@@ -82,7 +82,7 @@ public class ficheroSeguro
 	{
 	     int cont = 0;
 	     String linea=" ";      
-	     RandomAccessFile direcciones = new RandomAccessFile("/home/zerokullneo/github/netbeans/PCTR-Practicas/Practica7/src/practica7/direccionesRed.txt","r");
+	     RandomAccessFile direcciones = new RandomAccessFile("/home/zerokullneo/github/netbeans/Pctr-Practicas/practica7/src/practica7/direccionesRed.txt","r");
 	     iniTiempo = System.nanoTime();
 	     while(linea!=null)
 	     {
@@ -92,7 +92,10 @@ public class ficheroSeguro
 	     }
 	     direcciones.close();
 	}
-	catch (EOFException e) {System.out.println(e);}
+	catch (EOFException e)
+        {
+            System.out.println("Error EOF: " + e);
+        }
 	
 	for(Iterator iter = tareas.iterator(); iter.hasNext();) 
 	     ept.execute((Runnable)iter.next());

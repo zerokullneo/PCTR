@@ -16,6 +16,7 @@
  */
 
 package practica3;
+
 import java.lang.*;
 import java.io.*;
 import java.util.*;
@@ -67,8 +68,13 @@ public class escalaVectorParalelo extends Thread
 	System.out.println("Vector: " + vector[0] + ", " + vector[1] + ", " + vector[2] + ",..., " + vector[MAX-3] + ", " + vector[MAX-2] + ", " + vector[MAX-1]);
      }
 	
-     public static void main(String args[]) throws IOException
-     {
+    /**
+     *
+     * @param args
+     * @throws IOException
+     */
+    public static void main(String args[]) throws IOException, InterruptedException
+    {
 	int MAX = 10000000;
 	InputStreamReader entrada = new InputStreamReader(System.in);
 	BufferedReader lectura = new BufferedReader(entrada);
@@ -92,5 +98,7 @@ public class escalaVectorParalelo extends Thread
 		
 	hijo1.start();
 	hijo2.start();
+        hijo1.join();
+        hijo2.join();
      }
 }

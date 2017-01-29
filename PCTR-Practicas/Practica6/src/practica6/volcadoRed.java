@@ -57,8 +57,12 @@ public class volcadoRed
 	     }
 	     direcciones.close();
 	}
-	catch (EOFException e) {System.out.println(e);}
-	for(Iterator iter = tareas.iterator(); iter.hasNext();) 
+	catch (EOFException e)
+        {
+            System.out.println("ERROR - RedParalelo" + e);
+        }
+
+        for(Iterator iter = tareas.iterator(); iter.hasNext();) 
 	     ept.execute((Runnable)iter.next());
 
 	ept.shutdown();

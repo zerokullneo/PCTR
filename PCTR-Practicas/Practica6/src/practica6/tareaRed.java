@@ -51,9 +51,12 @@ public class tareaRed implements Runnable
 	{
 	     url =  new URL(dir);
 	}
-	catch(MalformedURLException e){}
+	catch(MalformedURLException e)
+        {
+            System.out.println("ERROR - tareaRed: " + e);
+        }
 	
-	System.out.println("Contactando con "+dir);
+	System.out.println("Contactando con " + dir);
 	
 	try
 	{
@@ -70,6 +73,9 @@ public class tareaRed implements Runnable
 	     }while(datos!=null);
 	     volcado.close();
 	}
-	catch(IOException e){}
+	catch(IOException e)
+        {
+            System.out.println("ERROR - tareaRed: " + e);
+        }
      }
 }

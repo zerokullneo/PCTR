@@ -58,25 +58,29 @@ public class piParalelo implements Runnable
      public static void main(String[] args) throws InterruptedException
      {
 	int nNuc = Runtime.getRuntime().availableProcessors();
-	float Cb = 0;
+	float Cb = (float) 0.1;
 	double pii;
 	int tampool = (int)(nNuc/(1-Cb));
-	int nintentos = 1000;
+	int nintentos = 1000000;
 	Thread hPiParalelo[] = new Thread[tampool];
 
+        double inicTiempo = System.nanoTime();
 	for(int i = 0; i < tampool; i++)
 	{
 	     hPiParalelo[i] = new Thread(new piParalelo(nintentos));
 	     hPiParalelo[i].start();
 	}
-	
+
 	for(int i = 0; i < tampool; i++)
 	{
 	     hPiParalelo[i].join();
 	}
-	
+
+        double tiempoTotal = (System.nanoTime()-inicTiempo)/(double)1.0e9;
+        System.out.println("en "+tiempoTotal+" segundos...");
+
 	System.out.println( "valor de puntos:" + puntos);
-	
+
 	pii = ((double)nintentos*tampool)/(double)puntos;
 	System.out.println( "valor de PI:" + pii);
      }

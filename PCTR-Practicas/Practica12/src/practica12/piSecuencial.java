@@ -56,12 +56,15 @@ public class piSecuencial
 
      public static void main(String[] args)
      {
-	int nintentos = 1000;
+	int nintentos = 10000;
 	double pii;
 	new piSecuencial(nintentos);
-	
-	ejecutar();
-	
+
+        double inicTiempo = System.nanoTime();
+        ejecutar();
+        double tiempoTotal = (System.nanoTime()-inicTiempo)/(double)1.0e9;
+        System.out.println("en "+tiempoTotal+" segundos...");
+
 	System.out.println( "valor de puntos:" + puntos);
 	
 	pii = (double)nintentos/(double)puntos;

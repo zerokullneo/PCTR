@@ -16,6 +16,7 @@
  */
 
 package practica4;
+
 import java.lang.*;
 import java.io.*;
 import java.util.*;
@@ -151,7 +152,7 @@ public class matVectorConcurrente implements Runnable
 	do
 	{
 	     System.out.println();
-	     System.out.println("-- Menu --");
+	     System.out.println("-- Menu Vector Concurrente--");
 	     System.out.println("1.- Vector y Matriz Manual.");
 	     System.out.println("2.- Vector y Matriz Aleatorio.");
 	     System.out.println("0.- Salir.");
@@ -186,8 +187,8 @@ public class matVectorConcurrente implements Runnable
 		     for(i = 0; i < N; i++)
 			new Thread(MV[i]).start();
 		     MV[0].VerVector();
-		     for(i = 0; i < N; i++)
-			MV[i].VerMatriz();
+		     //for(i = 0; i < N; i++)
+			MV[N-1].VerMatriz();
 		     break;
 		}
 		case 2:
@@ -202,8 +203,8 @@ public class matVectorConcurrente implements Runnable
 		     for(i = 0; i < N; i++)
 			new Thread(MV[i]).start();
 		     MV[0].VerVector();
-		     for(i = 0; i < N; i++)
-			MV[i].VerMatriz();
+		     //for(i = 0; i < N; i++)
+			MV[N-1].VerMatriz();
 		     break;
 		}
 		default:

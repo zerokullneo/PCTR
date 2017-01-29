@@ -22,6 +22,8 @@
  * Area de CC. de la Computacion e I.A.
  */
 
+package practica2;
+
 import java.lang.*;
 
 public class Elipse

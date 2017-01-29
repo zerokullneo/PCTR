@@ -94,7 +94,7 @@ public class algDekker extends Thread
 
      public static void main(String[] args) throws InterruptedException 
      {
-          algDekker t1 = new algDekker();
+        algDekker t1 = new algDekker();
 	algDekker t2 = new algDekker();
 	algDekker t3 = new algDekker();
 

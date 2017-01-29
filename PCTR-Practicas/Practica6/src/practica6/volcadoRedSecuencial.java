@@ -16,6 +16,7 @@
  */
 
 package practica6;
+
 import java.util.*;
 import java.io.*;
 import java.net.*;
@@ -54,24 +55,24 @@ public class volcadoRedSecuencial
 	     }while(datos!=null);
 	     volcado.close();
 	}
-	catch(IOException e){System.out.println(e);}
+	catch(IOException e){System.out.println("Error - RedSecuencial: " + e);}
      }
 
      public static void main(String[] args)
      {
-	int cont=0;
 	long iniTiempo = System.nanoTime();
 	try
 	{
-	     String linea=" ";
-	     RandomAccessFile direcciones = new RandomAccessFile("direccionesRed.txt","r");
-	     while(linea!=null)
-	     {
+            int cont=0;
+	    String linea=" ";
+	    RandomAccessFile direcciones = new RandomAccessFile("direccionesRed.txt","r");
+	    while(linea!=null)
+	    {
 		linea =(String)direcciones.readLine();
 		if(linea!=null)
 		     navegarURL(linea, cont);
 		cont++;
-	     }
+	    }
 	     direcciones.close();
 	}
 	catch(FileNotFoundException e) {System.out.println(e);}

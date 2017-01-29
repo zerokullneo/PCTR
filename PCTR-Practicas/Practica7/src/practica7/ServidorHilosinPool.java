@@ -32,73 +32,74 @@ import java.io.*;
  */
 public class ServidorHilosinPool extends Thread
 {
-     private static Socket enchufe;
-     private static boolean condicion;
+    private static Socket enchufe;
+    private static boolean condicion;
 
-     public ServidorHilosinPool(Socket s)
-     {
-	enchufe = s; this.start();
-     }
+    public ServidorHilosinPool(Socket s)
+    {
+        enchufe = s; this.start();
+    }
 
-     public synchronized void ConexionEntrante()
-     {
-	try
+    public synchronized void ConexionEntrante()
+    {
+        try
 	{
-	     BufferedReader entrada = new BufferedReader(new InputStreamReader(enchufe.getInputStream()));
-	     String datos = entrada.readLine();
-	     int j;
-	     int i = Integer.valueOf(datos).intValue();
+	    BufferedReader entrada = new BufferedReader(new InputStreamReader(enchufe.getInputStream()));
+	    String datos = entrada.readLine();
+	    int j;
+	    int i = Integer.valueOf(datos).intValue();
 
-	     for(j=1; j<=10; j++)
-	     {
-		System.out.println("El hilo "+this.getName()+" escribiendo el dato " + i);
+	    for(j=1; j<=10; j++)
+	    {
+                System.out.println("El hilo "+this.getName()+" escribiendo el dato " + i);
 		sleep(1000);
-	     }
+	    }
 
-	     System.out.println("El hilo "+this.getName()+"cierra su conexion...");
+	    System.out.println("El hilo "+this.getName()+"cierra su conexion...");
 	}
 	catch(Exception e)
 	{
 	     System.out.println("Error en ConexionEntrante..." + e);
 	}
-     }
+    }
 
-     public synchronized void run()
-     {
-	while(condicion == false)
+    public synchronized void run()
+    {
+        while(condicion == false)
 	ConexionEntrante();
-     }
+    }
 
-     public static void main (String[] args)
-     {
-	int i;
+    public static void main (String[] args)
+    {
+        int i;
 	int puerto = 2001;
 
 	try
 	{
-	     ServerSocket chuff = new ServerSocket(puerto, 3000);
+	    ServerSocket chuff = new ServerSocket(puerto, 3000);
 
-	     while(true)
-	     {
-		System.out.println("Esperando solicitud de conexion...");
+	    while(true)
+	    {
+                System.out.println("Esperando solicitud de conexion...");
 		Socket cable = chuff.accept();
 		System.out.println("Recibida solicitud de conexion...");
 		new ServidorHilosinPool(cable);
 		Thread tel1 = new Thread(new ServidorHilosinPool(cable));
 		Thread tel2 = new Thread(new ServidorHilosinPool(cable));
 		Thread tel3 = new Thread(new ServidorHilosinPool(cable));
-		tel1.start();
+
+                tel1.start();
 		tel2.start();
 		tel3.start();
 		tel1.join();
 		tel2.join();
 		tel3.join();
 		cable.close();
-	     }
+	    }
 	}
 	catch(Exception e)
 	{
-	     System.out.println("Error en sockets..." + e);
+	    System.out.println("Error en sockets..." + e);
 	}
-     }
+    }
 }

@@ -17,6 +17,8 @@
 
 package practica12;
 
+import static java.lang.Thread.sleep;
+import java.util.concurrent.*;
 /**Fichero pcHebras.java
  * @author Jose Manuel Barba Gonzalez
  * @version 1.0
@@ -29,8 +31,53 @@ package practica12;
  */
 public class pcHebras
 {
-     public static void main(String[] args) throws InterruptedException
-     {
-	
-     }
+    public static void main(String[] args) throws InterruptedException
+    {
+        double inicTiempo = System.nanoTime();
+
+        pcMonitor p1 = new pcMonitor(0);
+        p1.start();
+
+        pcMonitor p2 = new pcMonitor(0);
+        p2.start();
+
+        pcMonitor p3 = new pcMonitor(0);
+        p3.start();
+
+        pcMonitor p4 = new pcMonitor(0);
+        p4.start();
+
+        pcMonitor p5 = new pcMonitor(0);
+        p5.start();
+        
+        pcMonitor c1 = new pcMonitor(1);
+        c1.start();
+        
+        pcMonitor c2 = new pcMonitor(1);
+        c2.start();
+        
+        pcMonitor c3 = new pcMonitor(1);
+        c3.start();
+        
+        pcMonitor c4 = new pcMonitor(1);
+        c4.start();
+        
+        pcMonitor c5 = new pcMonitor(1);
+        c5.start();
+        sleep(1000);
+        c5.join();
+        c4.join();        
+        c3.join();
+        c2.join();
+        c1.join();
+        sleep(2000);
+        p1.join();
+        p2.join();
+        p3.join();
+        p4.join();
+        p5.join();
+
+        double tiempoTotal = (System.nanoTime()-inicTiempo)/(double)1.0e9;
+        System.out.println("en "+tiempoTotal+" segundos...");
+    }
 }

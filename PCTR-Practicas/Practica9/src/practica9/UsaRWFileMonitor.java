@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package practica9;
+//package practica9;
 
 import java.io.*;
 import java.util.concurrent.*;
@@ -34,7 +34,7 @@ import java.util.logging.Logger;
  */
 public class UsaRWFileMonitor implements Runnable
 {
-     private static final int N = 10;
+     private static final int N = 8;
      RandomAccessFile fichero;
      private static RWFileMonitor raw = new RWFileMonitor();
 
@@ -59,10 +59,12 @@ public class UsaRWFileMonitor implements Runnable
 	catch (EOFException e)
 	{
 	     System.out.println("ERROR apertura de fichero..." + e);
+             return ;
 	}
 	catch(IOException ex)
 	{
 	     Logger.getLogger(UsaRWFileMonitor.class.getName()).log(Level.SEVERE, null, ex);
+             return ;
 	}
      }
 

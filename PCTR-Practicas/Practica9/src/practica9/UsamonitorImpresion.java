@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package practica9;
+//package practica9;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -32,9 +32,9 @@ import java.util.concurrent.Executors;
  */
 public class UsamonitorImpresion implements Runnable
 {
-     private static final int N = 10;
+     private static final int N = 8;
      private static final int tam = 10;
-     private static monitorImpresion mon = new monitorImpresion(N);
+     private static final monitorImpresion mon = new monitorImpresion(N);
 
      public UsamonitorImpresion(){}
 

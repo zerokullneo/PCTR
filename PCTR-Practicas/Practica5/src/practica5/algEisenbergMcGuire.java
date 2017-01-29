@@ -104,7 +104,8 @@ public class algEisenbergMcGuire implements Runnable
 
 	t1 = new algEisenbergMcGuire(1,1000000);
 	t2 = new algEisenbergMcGuire(2,1000000);
-	//con la interfaz Runnable hay que crear primero los Threads
+	
+        //con la interfaz Runnable hay que crear primero los Threads
 	Thread EM1 = new Thread(t1);
 	Thread EM2 = new Thread(t2);
 

@@ -105,7 +105,7 @@ public class resImagenParFin extends CargaImagen implements Runnable
 	long finTiempo, inicTiempo = System.nanoTime();
 
 	matriz = cargar("uca.png");
-if(tamPool > matriz.length)tamPool = matriz.length;
+        if(tamPool > matriz.length)tamPool = matriz.length;
 	ThreadPoolExecutor ept = new ThreadPoolExecutor(tamPool,tamPool,0L,TimeUnit.MILLISECONDS,new LinkedBlockingQueue<Runnable>());
 
 	ept.prestartAllCoreThreads();

@@ -36,7 +36,7 @@ public class algoLamport implements Runnable
 {
      public static volatile int[] turnos;
      private static int numThread;
-     private static int thread=0;
+     private static int thread = 0;
 
      public algoLamport(int t)
      {
@@ -55,33 +55,32 @@ public class algoLamport implements Runnable
 	     System.out.println(this.toString() + ": Pre-protocolo: " + thread);
 
 	     if(thread == 9)
-		thread=0;
+		thread = 0;
 	     else
 		if(thread == 0)
 		     thread = 1;
 		else
-		     thread = (thread % numThread);
+		     thread ++;//= thread % numThread;
 
-	     turnos[numThread] = thread;
+	     turnos[i] = thread;
 	     //turnos[numThread] = turnos[thread] + 1;
 
-	     System.out.println(this.toString() + ": Mi turno: " + turnos[numThread] + ". Turno del otro: " + turnos[thread]);
-	     while(turnos[thread] != 0 && turnos[numThread] > turnos[thread]) {}
+	     System.out.println(this.toString() + ": Mi turno: " + turnos[i] + ". Turno del otro: " + turnos[thread]);
+	     while(turnos[i] != 0 && turnos[i] > turnos[thread]) {}
 
 	     //Sección crítica
 	     System.out.println(this.toString() + ": Seccion critica. Vuelta " + i);
 
 	     //Post-protocolo
 	     System.out.println(this.toString() + ": Post-protocolo");
-	     turnos[numThread] = 0;
-	     System.out.println(this.toString() + ": Post turnos[" + numThread + "] = " + turnos[numThread]);
+	     turnos[i] = thread;
+	     System.out.println(this.toString() + ": Post turnos[" + i + "] = " + turnos[i]);
 	}
      }
 
      public static void main(String[] args) throws InterruptedException
      {
-	algoLamport []t1; //= new algoLamport();
-	//algoLamport t2 = new algoLamport();
+	algoLamport []t1;
 
 	int  nTareas = 10;
 	int  tamPool = 1000000;
@@ -89,9 +88,9 @@ public class algoLamport implements Runnable
 	ThreadPoolExecutor cola = new ThreadPoolExecutor(nTareas, tamPool, 60000L,TimeUnit.MILLISECONDS,new LinkedBlockingQueue<Runnable>());
 
 	t1 = new algoLamport[nTareas];
-	for(int i=0; i<nTareas; i++)
+	for(int i = 0; i < nTareas; i++)
 	{
-		t1[i] = new algoLamport(i);
+		t1[i] = new algoLamport(nTareas);
 		cola.execute(t1[i]);
 	}
 	cola.shutdown();

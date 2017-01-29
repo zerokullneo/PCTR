@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package practica9;
+//package practica9;
 
 /**Fichero usamonitorCadena.java
  * @author Jose Manuel Barba Gonzalez
@@ -32,9 +32,9 @@ import java.util.concurrent.Executors;
 
 public class usamonitorCadena implements Runnable
 {
-     private static final int N = 10;
+     private static final int N = 8;
      private static final int tam = 10;
-     private static monitorCadena mon = new monitorCadena(N,tam);
+     private static final monitorCadena mon = new monitorCadena(N,tam);
 
      public usamonitorCadena(){}
 

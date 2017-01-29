@@ -110,7 +110,7 @@ public class resImagenParGru extends CargaImagen implements Runnable
 	int tamPool = 4, i; 
 	long finTiempo, inicTiempo = System.nanoTime();
 
-	matriz = cargar("uca_g.png");
+	matriz = cargar("uca.png");
 
 	ThreadPoolExecutor ept = new ThreadPoolExecutor(tamPool,tamPool,0L,TimeUnit.MILLISECONDS,new LinkedBlockingQueue<Runnable>());
 

@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package practica9;
+//package practica9;
 
 /**Fichero RWFileMonitor.java
  * @author Jose Manuel Barba Gonzalez
@@ -42,6 +42,7 @@ public class RWFileMonitor
 	     catch (InterruptedException e)
 	     {
 		System.out.println("Error lectura..." + e);
+                return ;
 	     }
 	
 	readers = readers + 1;
@@ -68,6 +69,7 @@ public class RWFileMonitor
 	     catch (InterruptedException e)
 	     {
 		System.out.println("Error escritura..." + e);
+                return ;
 	     }
 	writing = true;
 	System.out.println("Escritor inicia escritura...");

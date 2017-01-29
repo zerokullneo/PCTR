@@ -32,33 +32,34 @@ import java.io.*;
  */
 public class ServidorHiloconPool implements Runnable
 {
-     Socket enchufe;
-     public ServidorHiloconPool(Socket s)
-     {
-     	enchufe = s;
-     }
+    Socket enchufe;
 
-     public synchronized void run()
-     {
-	try
+    public ServidorHiloconPool(Socket s)
+    {
+    	enchufe = s;
+    }
+
+    public synchronized void run()
+    {
+        try
 	{
-	     BufferedReader entrada = new BufferedReader(new InputStreamReader(enchufe.getInputStream()));
-	     String datos = entrada.readLine();
-	     int j;
-	     int i = Integer.valueOf(datos).intValue();
+            BufferedReader entrada = new BufferedReader(new InputStreamReader(enchufe.getInputStream()));
+            String datos = entrada.readLine();
+	    int j;
+	    int i = Integer.valueOf(datos).intValue();
 
-	     for(j=1; j<=10; j++)
-	     {
-		System.out.println("El hilo " + this.getClass().getName() + " escribiendo el dato " + i);
-		Thread.currentThread().sleep(1000);//especifico para la clase Runnable.
-	     }
+            for(j=1; j<=10; j++)
+	    {
+                System.out.println("El hilo " + this.getClass().getName() + " escribiendo el dato " + i);
+                Thread.currentThread().sleep(1000);//especifico para la clase Runnable.
+            }
 
-	     enchufe.close();
-	     System.out.println("El hilo " + this.getClass().getName() + "cierra su conexion...");
+            enchufe.close();
+            System.out.println("El hilo " + this.getClass().getName() + "cierra su conexion...");
 	}
 	catch(Exception e)
 	{
-	     System.out.println("Error...");
+	     System.out.println("Error..." + e);
 	}
      }//run
 

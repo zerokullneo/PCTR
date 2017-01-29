@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package practica9;
+//package practica9;
 
 /**Fichero monitorCadena.java
  * @author Jose Manuel Barba Gonzalez
@@ -33,23 +33,25 @@ import java.text.*;
 
 public class monitorCadena
 {
-     private int numSlots = 0;
-     private int tamano = 0;
-     private int [] buffer = null;
-     private int putIn = 0, takeOut = 0;
-     private int cont = 0;
-     private monitorCadena buffer1 = new monitorCadena(100,tamano);
-     private monitorCadena buffer2 = new monitorCadena(50,tamano);
-     
+    private int numSlots = 0;
+    private int tamano = 0;
+    private int putIn = 1, takeOut = 1;
+    private int matriz [][];
+    private int cont = 0;
+    private final int[] buffer1 = new int[100];
+    private int[] buffer2 = new int[50];
+    
+
      public monitorCadena(int nslots, int tam)
      {
 	tamano = tam;
 	numSlots = nslots;
-	buffer = new int[numSlots];
+        matriz = new int[tamano][tamano];
      }
 
-     public synchronized void insertar(int valor)
+     public synchronized int insertar(int buffaux[])
      {
+        int valor;
 	while(cont == numSlots)
 	try
 	{
@@ -58,17 +60,17 @@ public class monitorCadena
 	catch(InterruptedException e)
 	{
 	     System.out.println("ERROR Insertar..." + e);
+             return -1;
 	}
 
-	buffer[putIn] = valor;
-	putIn = (putIn +1) % numSlots;
+	valor = buffaux[putIn];
 	cont++;
 	notifyAll();
+        return valor;
      }
 
-     public synchronized int extraer()
+     public synchronized int[] extraer(int valor)
      {
-	int valor;
 	while (cont == 0)
 	     try
 	     {
@@ -79,46 +81,42 @@ public class monitorCadena
 		System.out.println("ERROR Extraer..." + e);
 	     }
 
-	valor = buffer[takeOut];
-	takeOut = (takeOut + 1) % numSlots;
+	valor = buffer1[takeOut];
 	cont--;
 	notifyAll();
-
-	return valor;
+        return buffer1;
      }
 
-     public void procesoA()
+     public synchronized void procesoA()
      {
-	int matriz [][] = new int[tamano][tamano];
-
 	for(int x = 0; x < tamano; x++)
-	     for(int y = 0; y < tamano; y++)
-	     {
-		matriz[x][y] = (int)Math.floor(Math.random()*100);
-		buffer1.insertar(matriz[x][y]);
-	     }
+	    for(int y = 0; y < tamano; y++)
+	    {
+                matriz[x][y] = (int)Math.floor(Math.random()*100);
+		numSlots=insertar(buffer1);
+            }
      }
 
-     public void procesoB()
+     public synchronized void procesoB()
      {
-	int matriz[][] = new int[tamano][tamano];
+	int matrizI[][] = new int[tamano][tamano];
 	
 	for(int x = 0; x < tamano; x++)
 	     for(int y = 0; y < tamano; y++)
 	     {
-		matriz[y][x] = buffer1.extraer();
-		buffer2.insertar(matriz[x][y]);
+		buffer2 = extraer(matrizI[y][x]);
+		numSlots=insertar(buffer2);
 	     }
      }
 
-     public void procesoC()
+     public synchronized void procesoC()
      {
 	int diag = 0;
-	int matriz[][] = new int[tamano][tamano];
+	int matrizD[][] = new int[tamano][tamano];
 
 	for(int x = 0; x < tamano; x++)
 	     for(int y = 0; y < tamano; y++)
-		matriz[x][y] = buffer1.extraer();
+		extraer(matrizD[x][y]);
 
     	for(int x = 0; x < tamano; x++)
 	     diag = diag * matriz[x][x];
