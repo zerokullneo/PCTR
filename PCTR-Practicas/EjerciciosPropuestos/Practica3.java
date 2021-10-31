@@ -3,21 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package practica2;
+package practica3;
 
 import java.util.Scanner;
 
 /**
  *
- * @author zerokullneo
+ * @author Jose Manuel Barba Gonzalez
  */
-public class Practica2 {
+public class Practica3 {
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         // TODO code application logic here
         Scanner opcion;
         int opt;
@@ -25,11 +24,11 @@ public class Practica2 {
         do
         {
             System.out.println("Menu");
-            System.out.println("1.- Ejercicio Paciente/Biblioteca.");
-            System.out.println("2.- Ejercicio Ackermann.");
-            System.out.println("3.- Ejercicio Estadistica.");
-            System.out.println("4.- Ejercicio Complejos.");
-            System.out.println("5.- Ejercicio Elipse.");
+            System.out.println("1.- Ejercicio Poligonos.");
+            System.out.println("2.- Ejercicio Cajero Automatico.");
+            System.out.println("3.- Ejercicio Hilo.");
+            System.out.println("4.- Ejercicio Vector Lineal.");
+            System.out.println("5.- Ejercicio Vector Paralelo.");
             System.out.println("0.- Salir.");
             opcion = new Scanner(System.in);
             opt = opcion.nextInt();
@@ -37,10 +36,10 @@ public class Practica2 {
             switch(opt)
             {
                 case 1:
-                    System.out.println("Ejecutando Paciente/Biblioteca.");
+                    System.out.println("Ejecutando Poligonos.");
                     try
                     {
-                        Biblioteca.main(null);
+                        UsaTodo.main(null);
                     }
                     catch(Exception e)
                     {
@@ -48,10 +47,10 @@ public class Practica2 {
                     }
                     break;
                 case 2:
-                    System.out.println("Ejecutando Ackermann.");
+                    System.out.println("Ejecutando Cajero Automatico.");
                     try
                     {
-                        Ack.main(null);
+                        Usa_Cajero.main(null);
                     }
                     catch(Exception e)
                     {
@@ -59,10 +58,10 @@ public class Practica2 {
                     }
                     break;
                 case 3:
-                    System.out.println("Ejecutando Estadistica.");
+                    System.out.println("Ejecutando Hilo.");
                     try
                     {
-                        Estadistica.main(null);
+                        Usa_Hilo.main(null);
                     }
                     catch(Exception e)
                     {
@@ -70,10 +69,10 @@ public class Practica2 {
                     }
                     break;
                 case 4:
-                    System.out.println("Ejecutando Complejos.");
+                    System.out.println("Ejecutando Vector Lineal.");
                     try
                     {
-                        usaComplejos.main(null);
+                        escalaVector.main(null);
                     }
                     catch(Exception e)
                     {
@@ -81,10 +80,10 @@ public class Practica2 {
                     }
                     break;
                 case 5:
-                    System.out.println("Ejecutando Elipse.");
+                    System.out.println("Ejecutando Vector Paralelo.");
                     try
                     {
-                        usaElipse.main(null);
+                        escalaVectorParalelo.main(null);
                     }
                     catch(Exception e)
                     {
@@ -100,4 +99,5 @@ public class Practica2 {
             }
         }while(opt != 0);
     }
+    
 }
