@@ -1,5 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
+ /*
+ 
+* To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -26,11 +27,11 @@ public class Practica1 {
         do
         {
             System.out.println("Menu");
-            System.out.println("1.- Aleatorios.");
-            System.out.println("2.- Cesar.");
-            System.out.println("3.- Circulo.");
-            System.out.println("4.- Definida MonteCarlo.");
-            System.out.println("5.- NewtonRaphson.");
+            System.out.println("1.- Jerarquia de Clases.");
+            System.out.println("2.- Newton-Raphson.");
+            System.out.println("3.- Definida MonteCarlo.");
+            System.out.println("4.- Secuencia Estadística.");
+            System.out.println("5.- Complejos.");
             System.out.println("0.- Salir.");
             opcion = new Scanner(System.in);
             opt = opcion.nextInt();
@@ -38,10 +39,10 @@ public class Practica1 {
             switch(opt)
             {
                 case 1:
-                    System.out.println("Ejercicio Aleatorios.");
+                    System.out.println("Ejercicio Jerarquia de Clases.");
                     try
                     {
-                        aleatorios.main(null);
+                        jerarquiaClases.main(null);
                     }
                     catch(Exception e)
                     {
@@ -49,10 +50,10 @@ public class Practica1 {
                     }
                     break;
                 case 2:
-                    System.out.println("Ejercicio Cesar.");
+                    System.out.println("Ejercicio Newton-Raphson.");
                     try
                     {
-                        Cesar.main(null);
+                        NewtonRaphson.main(null);
                     }
                     catch(Exception e)
                     {
@@ -60,18 +61,25 @@ public class Practica1 {
                     }
                     break;
                 case 3:
-                    System.out.println("Ejercicio Circulo.");
-                    Circulo.main(null);
-                    break;
-                case 4:
                     System.out.println("Ejercicio Definida MonteCarlo.");
                     intDefinidaMonteCarlo.main(null);
                     break;
+                case 4:
+                    System.out.println("Secuencia Estadística.");
+                    try
+		    {
+			 Estadistica.main(null);
+		    }
+		    catch(Exception e)
+		    {
+			 System.out.println("Error entrada: " + e);
+		    }
+                    break;
                 case 5:
-                    System.out.println("Ejercicio NewtonRaphson.");
+                    System.out.println("Ejercicio Complejos.");
                     try
                     {
-                        NewtonRaphson.main(null);
+                        usaComplejos.main(null);
                     }
                     catch(Exception e)
                     {

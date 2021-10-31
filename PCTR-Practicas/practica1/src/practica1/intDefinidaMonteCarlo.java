@@ -11,11 +11,15 @@ import java.lang.*;
 
 public class intDefinidaMonteCarlo
 {
+     public static double fx(double x)
+     {
+	  return x;
+     }
 	public static void main(String[] args)
 	{
 		int d,i;
 		Scanner puntos;
-		double suma1 = 0, suma2 = 0;
+		double contadorFSinX = 0, contadorFX = 0, coordx, coordy;
 
 		System.out.println("Introduzca el numero de puntos(minimo10): ");
 		puntos = new Scanner(System.in);
@@ -23,13 +27,23 @@ public class intDefinidaMonteCarlo
 		if(d < 10) d = 10;
 
 		for(i = 0; i < d; i++)
-			suma1 = suma1 + Math.sin(Math.random());//f(x)=sin(x)
+		{
+		    coordx = Math.sin(Math.random());
+		    coordy = Math.sin(Math.random());
+		    if(coordy <= coordx)
+			 contadorFSinX++;//f(x)=sin(x)
+		}
 		
-		System.out.println("Resultado de la aproximacion MonteCarlo Funcion f(x) = sin(x): " + suma1/d);
+		System.out.println("Resultado de la aproximacion MonteCarlo Funcion f(x) = sin(x): " + contadorFSinX/d);
 		
 		for(i = 0; i < d; i++)
-			suma2 = suma2 + Math.random();//f(x) = x
+		{
+		    coordx = Math.random();
+		    coordy = Math.random();
+		    if(coordy <= fx(coordx))
+			 contadorFX++ ;//f(x) = x
+		}
 
-		System.out.println("Resultado de la aproximacion MonteCarlo Funcion f(x) = x: " + suma2/d);
+		System.out.println("Resultado de la aproximacion MonteCarlo Funcion f(x) = x: " + contadorFX/d);
 	}
 }
