@@ -1,8 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ /**
+ * Copyright (C) 2021 Jose Manuel Barba Gonzalez <zk at wordpress.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 package practica3;
 
 import java.util.Scanner;
@@ -11,8 +23,8 @@ import java.util.Scanner;
  *
  * @author Jose Manuel Barba Gonzalez
  */
-public class Practica3 {
-
+public class Practica3
+{
     /**
      * @param args the command line arguments
      */
@@ -24,11 +36,10 @@ public class Practica3 {
         do
         {
             System.out.println("Menu");
-            System.out.println("1.- Ejercicio Poligonos.");
-            System.out.println("2.- Ejercicio Cajero Automatico.");
-            System.out.println("3.- Ejercicio Hilo.");
-            System.out.println("4.- Ejercicio Vector Lineal.");
-            System.out.println("5.- Ejercicio Vector Paralelo.");
+            System.out.println("1.- Ejercicio Producto Escalar.");
+            System.out.println("2.- Ejercicio Producto Escalar Paralelo.");
+            System.out.println("3.- Ejercicio Producto de Matriz.");
+            System.out.println("4.- Ejercicio Producto de Matriz Paralelo.");
             System.out.println("0.- Salir.");
             opcion = new Scanner(System.in);
             opt = opcion.nextInt();
@@ -36,10 +47,10 @@ public class Practica3 {
             switch(opt)
             {
                 case 1:
-                    System.out.println("Ejecutando Poligonos.");
+                    System.out.println("Ejecutando Producto Escalar.");
                     try
                     {
-                        UsaTodo.main(null);
+                        prodEscalar.main(null);
                     }
                     catch(Exception e)
                     {
@@ -47,10 +58,10 @@ public class Practica3 {
                     }
                     break;
                 case 2:
-                    System.out.println("Ejecutando Cajero Automatico.");
+                    System.out.println("Ejecutando Producto Escalar Paralelo.");
                     try
                     {
-                        Usa_Cajero.main(null);
+                        prodEscalarParalelo.main(null);
                     }
                     catch(Exception e)
                     {
@@ -58,10 +69,10 @@ public class Practica3 {
                     }
                     break;
                 case 3:
-                    System.out.println("Ejecutando Hilo.");
+                    System.out.println("Ejecutando Vector Lineal.");
                     try
                     {
-                        Usa_Hilo.main(null);
+                        matVector.main(null);
                     }
                     catch(Exception e)
                     {
@@ -69,21 +80,10 @@ public class Practica3 {
                     }
                     break;
                 case 4:
-                    System.out.println("Ejecutando Vector Lineal.");
-                    try
-                    {
-                        escalaVector.main(null);
-                    }
-                    catch(Exception e)
-                    {
-                        System.out.println("Error entrada: " + e);
-                    }
-                    break;
-                case 5:
                     System.out.println("Ejecutando Vector Paralelo.");
                     try
                     {
-                        escalaVectorParalelo.main(null);
+                        matVectorConcurrente.main(null);
                     }
                     catch(Exception e)
                     {
