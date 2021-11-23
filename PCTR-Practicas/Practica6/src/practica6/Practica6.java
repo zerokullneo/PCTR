@@ -1,16 +1,34 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Copyright (C) 2021 Jose Manuel Barba Gonzalez <zk at wordpress.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 
 package practica6;
 
 import java.util.Scanner;
 
-/**
- *
- * @author zerokullneo
+/**Fichero Practica6.java
+ * @author Jose Manuel Barba Gonzalez
+ * @version 1.0
+ * Programacion Concurrente y de Tiempo Real
+ * Area de CC. de la Computacion e I.A.
+ */
+
+/**Descripcion
+ * Clase general que agrupa los ejercicios de la practica 6.
  */
 public class Practica6
 {
@@ -26,12 +44,12 @@ public class Practica6
         do
         {
             System.out.println("Menu Principal");
-            System.out.println("1.- Ejercicio Volcado de Red Secuencial.");
-            System.out.println("2.- Ejercicio Volcado de Red Paralelo.");
-            System.out.println("3.- Ejercicio Matriz Concurrente.");
-            System.out.println("4.- Ejercicio Resaltar imagen.");
-            System.out.println("5.- Ejercicio Resaltar imagen Grano Fino.");
-            System.out.println("6.- Ejercicio Resaltar imagen Grano Grueso.");
+            System.out.println("1.- Ejercicio Servidor de Hilos con Pool.");
+            System.out.println("2.- Ejercicio Array Seguro.");
+            System.out.println("3.- Ejercicio Heterogenea.");
+            System.out.println("4.- Ejercicio Deadlock.");
+            System.out.println("5.- Ejercicio Monte-Carlo Callable.");
+            System.out.println("6.- Ejercicios practica 2.");
             System.out.println("0.- Salir.");
             opcion = new Scanner(System.in);
             opt = opcion.nextInt();
@@ -39,10 +57,10 @@ public class Practica6
             switch(opt)
             {
                 case 1:
-                    System.out.println("Ejecutando Volcado de Red Secuencial...");
+                    System.out.println("Ejecutando Servidor de Hilos con Pool...");
                     try
                     {
-                        volcadoRedSecuencial.main(null);
+                        ServidorHiloconPool.main(null);
                     }
                     catch(Exception e)
                     {
@@ -50,12 +68,10 @@ public class Practica6
                     }
                     break;
                 case 2:
-                    System.out.println("Ejecutando Volcado de Red Paralelo...");
+                    System.out.println("Ejecutando Array Seguro...");
                     try
                     {
-                        String[] ar = new String[1];
-			ar[0] = "0.5";
-                        volcadoRed.main(ar);
+                        arrSeguro.main(null);
                     }
                     catch(Exception e)
                     {
@@ -63,12 +79,10 @@ public class Practica6
                     }
                     break;
                 case 3:
-                    System.out.println("Ejecutando Matriz Concurrente...");
+                    System.out.println("Ejecutando Heterogenea...");
                     try
                     {
-                        String[] ar = new String[2];
-			ar[0] = "10"; ar[1] = "0.5";
-                        matVectorConcurrente.main(ar);
+                        usaheterogenea.main(null);
                     }
                     catch(Exception e)
                     {
@@ -76,10 +90,10 @@ public class Practica6
                     }
                     break;
                 case 4:
-                    System.out.println("Ejecutando Resaltar imagen...");
+                    System.out.println("Ejecutando Deadlock...");
                     try
                     {
-                        resImagen.main(null);
+                        deadlock.main(null);
                     }
                     catch(Exception e)
                     {
@@ -87,12 +101,10 @@ public class Practica6
                     }
                     break;
                 case 5:
-                    System.out.println("Ejecutando Resaltar imagen Grano Fino...");
+                    System.out.println("Ejecutando Monte-Carlo Callable...");
                     try
                     {
-                        String[] ar = new String[1]; 
-			ar[0] = "0.5";
-                        resImagenParFin.main(ar);
+                        integCallable.main(null);
                     }
                     catch(Exception e)
                     {
@@ -100,10 +112,10 @@ public class Practica6
                     }
                     break;
                 case 6:
-                    System.out.println("Ejecutando Resaltar imagen Grano Grueso...");
+                    System.out.println("Ejecutando practica 2...");
                     try
                     {
-                        resImagenParGru.main(null);
+					practica2.Practica2.main(null);
                     }
                     catch(Exception e)
                     {
@@ -119,5 +131,4 @@ public class Practica6
             }
         }while(opt != 0);
     }
-    
 }
