@@ -8,7 +8,8 @@ package practica5;
 import java.util.Scanner;
 
 /**
- *
+ * Balancear la carga de cada hebra, ejemplo numeros primos la primera tarea tendra numeros mas livianos que la ultima,
+ * la interfaz callable siempre va unido a Future.
  * @author zerokullneo
  */
 public class Practica5 {
@@ -24,9 +25,12 @@ public class Practica5 {
         do
         {
             System.out.println("Menu Principal");
-            System.out.println("1.- Ejercicio Algoritmo de Dekker.");
-            System.out.println("2.- Ejercicio Algoritmo de Eisenberg-McGuire.");
-            System.out.println("3.- Ejercicio Algoritmo de Lamport.");
+            System.out.println("1.- Ejercicio Producto de Matrices Secuencial.");
+            System.out.println("2.- Ejercicio Producto de Matrices Paralelo.");
+            System.out.println("3.- Ejercicio Resaltado de Imagen Secuencial.");
+		  System.out.println("4.- Ejercicio Resaltado de Imagen Paralelo.");
+		  System.out.println("5.- Ejercicio Numeros Perfectos Secuencial.");
+		  System.out.println("6.- Ejercicio Numeros Perfectos Paralelo.");
             System.out.println("0.- Salir.");
             opcion = new Scanner(System.in);
             opt = opcion.nextInt();
@@ -34,10 +38,10 @@ public class Practica5 {
             switch(opt)
             {
                 case 1:
-                    System.out.println("Ejecutando Algoritmo de Dekker.");
+                    System.out.println("Ejecutando Producto de Matrices Secuencial.");
                     try
                     {
-                        algDekker.main(null);
+                        prodMatricesSecuencial.main(null);
                     }
                     catch(Exception e)
                     {
@@ -45,21 +49,54 @@ public class Practica5 {
                     }
                     break;
                 case 2:
-                    System.out.println("Ejecutando Algoritmo de Eisenberg-McGuire.");
+				 System.out.println("Ejecutando Producto de Matrices Paralelo.");
+				 try
+				 {
+					 prodMatricesParalelo.main(null);
+				 }
+				 catch(Exception e)
+				 {
+					 System.out.println("Error entrada: " + e);
+				 }
+				 break;
+			 case 3:
+                    System.out.println("Ejecutando Resaltado de Imagen Secuencial.");
                     try
                     {
-                        algEisenbergMcGuire.main(null);
+                        resImagen.main(null);
                     }
                     catch(Exception e)
                     {
                         System.out.println("Error entrada: " + e);
                     }
                     break;
-                case 3:
-                    System.out.println("Ejecutando Algoritmo de Lamport.");
+			case 4:
+                    System.out.println("Ejecutando Resaltado de Imagen Paralelo.");
                     try
                     {
-                        algoLamport.main(null);
+                        resImagenPar.main(null);
+                    }
+                    catch(Exception e)
+                    {
+                        System.out.println("Error entrada: " + e);
+                    }
+                    break;
+			case 5:
+                    System.out.println("Ejecutando Numeros Perfectos Secuencial.");
+                    try
+                    {
+                        numPerfectos.main(null);
+                    }
+                    catch(Exception e)
+                    {
+                        System.out.println("Error entrada: " + e);
+                    }
+                    break;
+			case 6:
+                    System.out.println("Ejecutando Numeros Perfectos Paralelo.");
+                    try
+                    {
+                        numPerfectosParalelo.main(null);
                     }
                     catch(Exception e)
                     {
