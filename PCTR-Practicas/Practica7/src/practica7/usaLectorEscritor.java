@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2015 Jose Manuel Barba Gonzalez <zk at wordpress.com>
+ * Copyright (C) 2021 Jose Manuel Barba Gonzalez <zk at wordpress.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,13 +14,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package practica7;
 
-import java.net.*;
-import java.io.*;
+import java.util.concurrent.*;
 
-/**Fichero clienteMultiple.java
+/**Fichero usaLectorEscritor.java
  * @author Jose Manuel Barba Gonzalez
  * @version 1.0
  * Programacion Concurrente y de Tiempo Real
@@ -30,27 +28,23 @@ import java.io.*;
 /**Descripcion
  * 
  */
-public class clienteMultiple
+public class usaLectorEscritor
 {
-    public static void main (String[] args)
-    {
-	int i = (int)(Math.random()*10);
-	int puerto = 2001;
+	private static final int N = 10;
+     
+	//private static lectorEscritor le = new lectorEscritor();
+	public static void main(String[] args)
+	{
+		ExecutorService ept = Executors.newFixedThreadPool(N);
 
-        try
-	{
-            System.out.println("Realizando conexion...");
-            Socket cable = new Socket("localhost", puerto);
-            System.out.println("Realizada conexion a " + cable);
-            PrintWriter salida= new PrintWriter(new BufferedWriter(new OutputStreamWriter(cable.getOutputStream())));
-            salida.println(i);
-            salida.flush();
-            System.out.println("Cerrando conexion...");
-            cable.close();
-	}//try
-	catch (Exception e)
-	{
-            System.out.println("Error en sockets..." + e);
+		for (int i = 0; i < N; i++)
+		{
+			if (i % 2 == 0)
+				ept.execute(new lectorEscritor(1));
+			else
+				ept.execute(new lectorEscritor(0));
+		}
+		ept.shutdown();
+		while(!ept.isTerminated()){}
 	}
-    }
 }
