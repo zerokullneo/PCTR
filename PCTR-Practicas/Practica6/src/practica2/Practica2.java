@@ -41,7 +41,8 @@ public class Practica2
 					System.out.println("Ejecutando Hebra n compartida.");
 					try
 					{
-						Usa_Hebra.main(null);
+						//Usa_Hebra.main(null);
+						System.out.println("No disponible por falta de espacio en la subida de ficheros.");
 					}
 					catch(Exception e)
 					{
@@ -63,7 +64,8 @@ public class Practica2
 					System.out.println("Ejecutando Escalar Vector.");
 					try
 					{
-						escalaVector.main(null);
+						//escalaVector.main(null);
+						System.out.println("No disponible por falta de espacio en la subida de ficheros.");
 					}
 					catch(Exception e)
 					{
