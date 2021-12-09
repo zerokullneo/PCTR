@@ -1,0 +1,7 @@
+(1) Descargue los ficheros ServidorActivable.java, ClienteActivador.java, MiParametro.java e InterfaRemoto.java
+(2) Compile los ficheros con javac *.java
+(3) Genere resguardos con rmic ServidorActivable
+(4) Arranque el DNS; rmiregistry
+(5) Arranque el demonio de activación de objetos remotos; rmid -J-Djava.security.policy=java.policy
+(6) Arranque el servidor; java -Djava.security.policy=java.policy ServidorActivable
+(7) Arranque un cliente; java -Djava.security.policy=java.policy ClienteActivador
