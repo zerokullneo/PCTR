@@ -31,7 +31,7 @@ import java.util.*;
 public class usaProdCon extends Thread
 {
 	PCMonitor monitor;
-	static final int ITERACIONES = 2;
+	static final int ITERACIONES = 2000;
 
 	usaProdCon(PCMonitor m)
 	{
@@ -41,14 +41,14 @@ public class usaProdCon extends Thread
 	public void run()
 	{
 		int temp = 0;
-		for(int it = 0; it < ITERACIONES; ++it)
+		for(; ; )
 		{
 			if (temp == 0)
 			{
-				System.out.println(it + " - Produciendo...");
-				monitor.Append(10);
+				System.out.println(temp + " - Produciendo...");
+				monitor.Append(monitor.N);
 			}
-			System.out.println(it + " - Consumiendo...");
+			System.out.println(temp + " - Consumiendo...");
 			temp = monitor.Take();
 		}
 	}
@@ -74,7 +74,7 @@ public class usaProdCon extends Thread
 			hilosProd[i].start();
 		}
 
-		for(int j=0 ; j < 1 ; j++)
+		for(int j=0 ; j < hilosCons.length ; j++)
 		{
 			hilosCons[j] = new usaProdCon(prodcon);
 			hilosCons[j].start();
