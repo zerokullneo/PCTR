@@ -4,14 +4,25 @@
  * and open the template in the editor.
  */
 package relacion.problemas5.ejercicio3;
-
+/**
+ * Ejemplo de API alto nivel, las variables ReentrantLock y Condition no 
+ */
 import java.util.*;
+import java.util.concurrent.locks.*;
 
 class MonitorPrioridades
 {
 	int prioridadquesedebeliberar = 0, turno = 0;
 	int[] procesosDePrioridad = new int[10];
+	ReentrantLock cerrojo = new ReentrantLock();
+	Condition[] condiciones;
 
+	public MonitorPrioridades()
+	{
+		condiciones = new Condition[procesosDePrioridad.length];
+		for(int i=0; i < condiciones.length; i++)
+			condiciones[i] = cerrojo.newCondition();
+	}
 	private int siguienteTurno()
 	{
 		int i = 0;
@@ -24,20 +35,21 @@ class MonitorPrioridades
 
 	public synchronized void bloquear(int n)
 	{
-		procesosDePrioridad[n-1]++;
-		
+		cerrojo.lock();
 			try
-			{
+			{procesosDePrioridad[n-1]++;
 				procesosDePrioridad[n]++;
 				System.out.println(Thread.currentThread().getName() 
 				+ ", de prioridad " + n + " se bloquea. " 
 				+ "En total hay " + prioridadquesedebeliberar 
 				+ " hilos bloqeados (" + procesosDePrioridad[n] 
 				+ " de prioridad " + n + ")");
-				wait();
+				condiciones[n].await();
 				
-				while(turno != n)
-					wait();
+				/*while(turno != n)
+					condiciones[n].await();
+				al ser colas de condicion individuales no hace falta la condicion de guarda.
+				*/
 				
 				prioridadquesedebeliberar--; procesosDePrioridad[n]--;
 				System.out.println(Thread.currentThread().getName() 
@@ -52,6 +64,10 @@ class MonitorPrioridades
 			catch(Exception ex)
 			{
 				ex.printStackTrace();
+			}
+			finally
+			{
+				cerrojo.unlock();
 			}
 		
 		procesosDePrioridad[n-1]--;
@@ -76,7 +92,7 @@ class MonitorPrioridades
 			System.out.println(Thread.currentThread().getName() 
 				+ " libera a los hilos de prioridad " + turno);
 
-			notifyAll();
+			condiciones[turno].signalAll();
 		}
 		else
 		{
@@ -130,16 +146,17 @@ public class ejercicio3 extends Thread
 			hilos[i] = new ejercicio3(monitor);
 			hilos[i].start();
 		}
-        
+		/*for(int i=0 ; i < hilos.length ; i++)
+		{
+			monitor.desbloquear();
+			hilos[i].join();
+		}*/      
 		for(;;)
 		{
 			Thread.sleep((long) (Math.random()*1000));
 			monitor.desbloquear();
 		}
 		
-		for(int i=0 ; i < hilos.length ; i++)
-		{
-			hilos[i].join();
-		}
+
 	}
 }
