@@ -16,7 +16,10 @@
  */
 package practica8;
 
+import static java.lang.Thread.*;
 import java.util.concurrent.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -35,8 +38,23 @@ public class usaforkMonitor implements Runnable
 
 	public void run()
 	{
-		mon.takeForks(N);
-		mon.releaseForks(N);
+		int i;
+		for(;;)
+		{
+			try
+			{
+				i = (int) (Math.random()*5);
+				//System.out.println("iteracion: " + i);
+				mon.takeForks(i);
+				sleep(1000);
+				mon.releaseForks(i);
+				sleep(1000);
+			}
+			catch (InterruptedException ex)
+			{
+				Logger.getLogger(usaforkMonitor.class.getName()).log(Level.SEVERE, null, ex);
+			}
+		}
 	}
 
 	public static void main(String[] args)
@@ -48,7 +66,7 @@ public class usaforkMonitor implements Runnable
 		for(int i = 0; i < Nf; i++)
 			ej.execute(new usaforkMonitor());
 
-		ej.shutdown();
-		while(!ej.isTerminated()){}
+		//ej.shutdown();
+		//while(!ej.isTerminated()){}
 	}
 }

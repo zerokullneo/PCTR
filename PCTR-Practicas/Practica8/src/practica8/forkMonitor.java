@@ -44,6 +44,8 @@ public class forkMonitor
 	{
 		try
 		{
+			System.out.println("Filosofo " + i + ", adquiere tenedores...");
+			
 			while(fork[i] != 2)
 				wait();
 			
@@ -58,6 +60,8 @@ public class forkMonitor
 	
 	public synchronized void releaseForks(int i)
 	{
+		System.out.println("Filosofo " + i + ", libera tenedores...");
+
 		fork[i + 1] = fork[i + 1] + 1;
 		fork[i - 1] = fork[i - 1] + 1;
 

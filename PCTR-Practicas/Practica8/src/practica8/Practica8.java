@@ -47,7 +47,7 @@ public class Practica8 {
                     System.out.println("Ejecutando Monitor Fork...");
                     try
                     {
-                        UsamonitorImpresion.main(null);
+                        usaforkMonitor.main(null);
                     }
                     catch(Exception e)
                     {
