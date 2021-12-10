@@ -24,9 +24,8 @@ public class Practica8 {
         do
         {
             System.out.println("Menu Principal");
-            System.out.println("1.- Ejercicio Conductores DGT.");
-            System.out.println("2.- Ejercicio Drakkar Vikingo.");
-            System.out.println("3.- Ejercicio Lector - Escritor.");
+            System.out.println("1.- Ejercicio Monitor de Impresion.");
+            System.out.println("2.- Ejercicio Monitor Fork.");
             System.out.println("0.- Salir.");
             opcion = new Scanner(System.in);
             opt = opcion.nextInt();
@@ -34,10 +33,10 @@ public class Practica8 {
             switch(opt)
             {
                 case 1:
-                    System.out.println("Ejecutando Conductores DGT...");
+                    System.out.println("Ejecutando Monitor de Impresion...");
                     try
                     {
-                        usaConductores.main(null);
+                        UsamonitorImpresion.main(null);
                     }
                     catch(Exception e)
                     {
@@ -45,25 +44,14 @@ public class Practica8 {
                     }
                     break;
                 case 2:
-                    System.out.println("Ejecutando Drakkar Vikingo...");
+                    System.out.println("Ejecutando Monitor Fork...");
                     try
                     {
-                        drakkarVikingo.main(null);
+                        UsamonitorImpresion.main(null);
                     }
                     catch(Exception e)
                     {
                         System.out.println("Error entrada - 2: " + e);
-                    }
-                    break;
-                case 3:
-                    System.out.println("Ejecutando Lector - Escritor...");
-                    try
-                    {
-                        usalectorEscritor.main(null);
-                    }
-                    catch(Exception e)
-                    {
-                        System.out.println("Error entrada - 3: " + e);
                     }
                     break;
                 case 0:
