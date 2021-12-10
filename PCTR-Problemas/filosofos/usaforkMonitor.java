@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package practica8;
+//package practica8;
 
 import static java.lang.Thread.*;
 import java.util.concurrent.*;

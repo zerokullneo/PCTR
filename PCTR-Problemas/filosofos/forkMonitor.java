@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package practica8;
+//package practica8;
 
 import static java.lang.Thread.*;
 import java.util.logging.*;
@@ -51,8 +51,8 @@ public class forkMonitor
 			while(fork[i] != 2)
 				wait();
 			
-			fork[(i + 1) % N] = fork[(i + 1) % N] - 1;
-			fork[(i - 1) % N] = fork[(i - 1) % N] - 1;
+			fork[(i + 1)%N] = fork[(i + 1)%N] - 1;
+			fork[(i - 1)%N] = fork[(i - 1)%N] - 1;
 		}
 		catch (InterruptedException ex)
 		{
@@ -67,8 +67,8 @@ public class forkMonitor
                 System.out.println("Filosofo " + i + ", libera tenedores...");
                 sleep(1000);
                 
-                fork[(i + 1) % N] = fork[(i + 1) % N] + 1;
-                fork[(i - 1) % N] = fork[(i - 1) % N] + 1;
+                fork[(i + 1)%N] = fork[(i + 1)%N] + 1;
+                fork[(i - 1)%N] = fork[(i - 1)%N	] + 1;
                 
                 while(fork[i + 1] == 2)
                     notifyAll();
