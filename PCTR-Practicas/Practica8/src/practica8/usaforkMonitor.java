@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 package practica8;
 
 import static java.lang.Thread.*;
@@ -42,12 +43,13 @@ public class usaforkMonitor implements Runnable
 		{
 			try
 			{
-				i = (int) (Math.random()*5);
-				//System.out.println("iteracion: " + i);
-				mon.takeForks(i);
-				sleep(1000);
-				mon.releaseForks(i);
-				sleep(1000);
+				for(i = 0; i < N; i++)
+				{
+					mon.takeForks(i);
+					sleep(1000);
+					mon.releaseForks(i);
+					sleep(1000);
+				}
 			}
 			catch (InterruptedException ex)
 			{
@@ -59,17 +61,21 @@ public class usaforkMonitor implements Runnable
 	public static void main(String[] args)
 	{
             int Nf = 5;
-            usaforkMonitor []fmonitor = new usaforkMonitor[Nf];
-            //ExecutorService ej = Executors.newFixedThreadPool(Nf);
+            //usaforkMonitor []fmonitor = new usaforkMonitor[Nf];
+            ExecutorService ej = Executors.newFixedThreadPool(Nf);
 
-            for(int th = 0; th < Nf; th++)
-                fmonitor[th] = new usaforkMonitor();
+            //usaforkMonitor fmonitor = new usaforkMonitor();
+            //fmonitor = new usaforkMonitor();
+            //new Thread(fmonitor).start();
+
+            //for(int th = 0; th < Nf; th++)
+            //    fmonitor[th] = new usaforkMonitor();
 
             for(int i = 0; i < Nf; i++)
-                new Thread(fmonitor[i]).start();
-                //ej.execute(new usaforkMonitor());
+            //    new Thread(fmonitor[i]).start();
+                ej.execute(new usaforkMonitor());
 
-            //ej.shutdown();
-            //while(!ej.isTerminated()){}
+            ej.shutdown();
+            while(!ej.isTerminated()){}
 	}
 }

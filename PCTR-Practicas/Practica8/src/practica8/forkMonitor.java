@@ -33,8 +33,8 @@ import java.util.logging.*;
  */
 public class forkMonitor
 {
-	private final int []fork;
-	private int N;
+	private static int []fork;
+	private static int N;
 
 	public forkMonitor(int n)
 	{
@@ -46,13 +46,18 @@ public class forkMonitor
 	{
 		try
 		{
-			System.out.println("Filosofo " + i + ", adquiere tenedores...");
+			System.out.println("Filosofo " + i + ", adquiere tenedores..." + Thread.currentThread().getName());
 			sleep(1000);
+                        fork[i] = 2;
 			while(fork[i] != 2)
 				wait();
-			
-			fork[(i + 1) % N] = fork[(i + 1) % N] - 1;
-			fork[(i - 1) % N] = fork[(i - 1) % N] - 1;
+			int masuno = ((i + 1) % N);
+                        int menuno = ((i - 1) % N);
+                        if(menuno == -1)
+                            menuno = menuno + N;
+                        System.out.println("indices: " + masuno + ", " + menuno);
+			fork[masuno] = fork[masuno] - 1;
+			fork[menuno] = fork[menuno] - 1;
 		}
 		catch (InterruptedException ex)
 		{
@@ -64,15 +69,19 @@ public class forkMonitor
 	{
             try
             {
-                System.out.println("Filosofo " + i + ", libera tenedores...");
+                System.out.println("Filosofo " + i + ", libera tenedores..." + Thread.currentThread().getName());
                 sleep(1000);
+			int masuno = ((i + 1) % N);
+                        int menuno = ((i - 1) % N);
+                        if(menuno == -1)
+                            menuno = menuno + N;
+                fork[masuno] = fork[masuno] + 1;
+                fork[menuno] = fork[menuno] + 1;
+                fork[i] = 0;
                 
-                fork[(i + 1) % N] = fork[(i + 1) % N] + 1;
-                fork[(i - 1) % N] = fork[(i - 1) % N] + 1;
-                
-                while(fork[i + 1] == 2)
+                /*while(fork[masuno] == 2)
                     notifyAll();
-                while(fork[i - 1] == 2)
+                while(fork[menuno] == 2)*/
                     notifyAll();
             }
             catch (InterruptedException ex)
