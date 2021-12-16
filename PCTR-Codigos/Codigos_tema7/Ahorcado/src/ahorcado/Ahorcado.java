@@ -16,7 +16,8 @@ public class Ahorcado {
 	/**
 	 * @param args the command line arguments
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception
+	{
 		ServidorAhorcado OServidor = new ServidorAhorcado();
 		Naming.lookup("juegoahorcado");
 	}
