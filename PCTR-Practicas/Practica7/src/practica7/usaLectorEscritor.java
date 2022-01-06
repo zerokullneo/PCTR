@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 package practica7;
 
 import java.util.concurrent.*;
@@ -30,7 +31,7 @@ import java.util.concurrent.*;
  */
 public class usaLectorEscritor
 {
-	private static final int N = 10;
+	private static final int N = 100000;
      
 	//private static lectorEscritor le = new lectorEscritor();
 	public static void main(String[] args)

@@ -51,24 +51,23 @@ public class drakkarVikingo extends Thread
 	@Override
 	public void run()
 	{
-		synchronized(this)
-		{
-			switch(operando)
-			{
-				case 0://Comer
-					while(true)
-					{
-						System.out.println("comer");
-						comer();
-					}
-				case 1://Cocinar
-					while (true)
-					{
-						System.out.println("cocinar");
-						cocinar();
-					}
-			}
+            synchronized(this)
+            {
+                while(true)
+                {
+                    if(marmita > 0)
+                    {
+                        System.out.println("comer");
+                        comer();
+                    }
+		
+                    else
+                    {
+                        System.out.println("cocinar");
+                        cocinar();
+                    }
 		}
+            }
 	}
 
 	/**

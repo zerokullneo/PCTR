@@ -50,11 +50,11 @@ public class usaDrakkarVikingo
 
 		cocinero.start(); //lanzo el cocinero
 		
-		for (int i = 0; i < vikingos; i++)
+		/*for (int i = 0; i < vikingos; i++)
 		{
 			v[i].join(); //lanzo los vikingos
 		}
 		
-		cocinero.join();
+		cocinero.join();*/
      }
 }

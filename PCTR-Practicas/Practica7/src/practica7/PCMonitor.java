@@ -27,15 +27,18 @@ public class PCMonitor
 			e.printStackTrace();
 		}
 
+		int circular = (Newest + 1) % N;
+		if(circular == -1)
+			circular = circular + N;
+
+		Newest = circular;
 		Buffer[Newest] = V;
-		Newest = (Newest + 1) % N;
 		Count = Count + 1;
 		notifyAll();
 	}
 
-	public synchronized int Take()
+	public synchronized void Take()
 	{
-		int temp;
 		while (Count == 0)
 		try
 		{
@@ -46,11 +49,15 @@ public class PCMonitor
 			e.printStackTrace();
 		}
 
-		temp = Buffer[Oldest];
-		Oldest = (Oldest + 1) % N;
+		int circular = (Newest + 1) % N;
+		if(circular == -1)
+			circular = circular + N;
+
+		Oldest = circular;
+		Count = Buffer[Oldest];
 		Count = Count - 1;
 		notifyAll();
 
-		return temp;
+		//return Count;
 	}
 }

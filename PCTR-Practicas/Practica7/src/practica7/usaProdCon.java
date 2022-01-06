@@ -40,17 +40,19 @@ public class usaProdCon extends Thread
 
 	public void run()
 	{
-		int temp = 0;
-		for(; ; )
-		{
-			if (temp == 0)
-			{
-				System.out.println(temp + " - Produciendo...");
-				monitor.Append(monitor.N);
-			}
-			System.out.println(temp + " - Consumiendo...");
-			temp = monitor.Take();
-		}
+            while(true)
+            {
+                if (monitor.Count <= 0)
+                {
+                    System.out.println(monitor.N + " - Produciendo...");
+                    monitor.Append(1);
+                }
+                else
+                {
+                    System.out.println(monitor.Count + " - Consumiendo...");
+                    /*monitor.Count =*/ monitor.Take();
+                }
+            }
 	}
 
 	public static void main(String[] args) throws InterruptedException
