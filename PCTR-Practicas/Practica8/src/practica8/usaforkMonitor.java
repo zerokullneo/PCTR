@@ -22,20 +22,42 @@ import java.util.concurrent.*;
 import java.util.logging.*;
 
 /**
+ * Fichero usaforkMonitor.java
+ * @author Jose Manuel Barba Gonzalez
+ * @version 1.0
+ * Programacion Concurrente y de Tiempo Real
+ * Area de CC. de la Computacion e I.A.
  *
- * @author zerokullneo
+ *
+ * Descripcion
+ * Clase que hace uso mediante la interfaz Runnable de la clase forkMonitor
+ * de la cena de los filosofos.
  */
 public class usaforkMonitor implements Runnable
 {
+	/**
+	 * Atributo que indica el numero de filosofos y tenedores disponibles.
+	 */
 	private static int N;
+
+	/**
+	 * Atributo para crear el tipo forkMonitor.
+	 */
 	private static forkMonitor mon;
 
+	/**
+	 * Constructor que inicializa los atributos de la clase.
+	 */
 	public usaforkMonitor()
 	{
 		N = 5;
 		mon = new forkMonitor(N);
 	}
 
+	/**
+	 * Metodo run sobreescrito para que simule la interaccion de los filosofos
+	 * con los tenedores.
+	 */
 	public synchronized void run()
 	{
 		int i;
@@ -46,9 +68,10 @@ public class usaforkMonitor implements Runnable
 				for(i = 0; i < N; i++)
 				{
 					mon.takeForks(i);
-					sleep(1000);
 					mon.releaseForks(i);
 					sleep(1000);
+					//se incluye una pausa con el único motivo
+					//de visualizar cómodamente la salida
 				}
 			}
 			catch (InterruptedException ex)
@@ -58,24 +81,19 @@ public class usaforkMonitor implements Runnable
 		}
 	}
 
+	/**
+	 * Metodo principal de la clase.
+	 * @param args argumentos de la entrada estandar.
+	 */
 	public static void main(String[] args)
 	{
-            int Nf = 5;
-            //usaforkMonitor []fmonitor = new usaforkMonitor[Nf];
-            ExecutorService ej = Executors.newFixedThreadPool(Nf);
+		int Nf = 5;
+		ExecutorService ej = Executors.newFixedThreadPool(Nf);
 
-            //usaforkMonitor fmonitor = new usaforkMonitor();
-            //fmonitor = new usaforkMonitor();
-            //new Thread(fmonitor).start();
+		for(int i = 0; i < Nf; i++)
+			ej.execute(new usaforkMonitor());
 
-            //for(int th = 0; th < Nf; th++)
-            //    fmonitor[th] = new usaforkMonitor();
-
-            for(int i = 0; i < Nf; i++)
-            //    new Thread(fmonitor[i]).start();
-                ej.execute(new usaforkMonitor());
-
-            ej.shutdown();
-            while(!ej.isTerminated()){}
+		ej.shutdown();
+		while(!ej.isTerminated()){}
 	}
 }

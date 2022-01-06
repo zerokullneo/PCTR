@@ -26,40 +26,69 @@ import java.util.concurrent.Executors;
  * @version 1.0
  * Programacion Concurrente y de Tiempo Real
  * Area de CC. de la Computacion e I.A.
- */
-
-/**
+ *
+ *
  * Descripcion
- * 
+ * Clase que hace uso mediante la interfaz Runnable de la clase monitorImpresion.
  */
 public class UsamonitorImpresion implements Runnable
 {
+	/**
+	 * Atributo que simula un numero de documentos a imprimir.
+	 */
 	private static int N;
+
+	/**
+	 * Atributo que indica el tamaño que va a tener el buffer de ranuras "libres".
+	 */
 	private static int tam;
+
+	/**
+	 * Atributo para crear el tipo monitorImpresion.
+	 */
 	private static monitorImpresion mon;
 
+	/**
+	 * Constructor que inicializa los atributos de la clase.
+	 */
 	public UsamonitorImpresion()
 	{
-		N = 8;
-		tam = 10;
-		mon = new monitorImpresion(N);
+		N = 9;
+		tam = 3;
+		mon = new monitorImpresion(tam);
 	}
 
+	/**
+	 * Metodo run sobreescrito para que simule la impresion con los metodos
+	 * de impresion.
+	 */
 	public void run()
 	{
-		mon.ImpresoraA();
-		mon.ImpresoraB();
-		mon.ImpresoraC();
+		int i;
+		//while(true)
+		//{
+			for(i = 0; i < N; i++)
+			{
+				mon.ImpresoraA();
+				mon.ImpresoraB();
+				mon.ImpresoraC();
+			}
+		//}
 	}
 
+	/**
+	 * Metodo principal de la clase.
+	 * @param args argumentos de la entrada estandar.
+	 */
 	public static void main(String[] args)
 	{
-		ExecutorService ej = Executors.newFixedThreadPool(N);
+		int nf = 9;
+		ExecutorService ej = Executors.newFixedThreadPool(nf);
 
-		for(int i = 0; i < N; i++)
+		for(int i = 0; i < nf; i++)
 			ej.execute(new UsamonitorImpresion());
 
 		ej.shutdown();
 		while(!ej.isTerminated()){}
-     }
+	}
 }
