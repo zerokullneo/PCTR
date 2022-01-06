@@ -1,0 +1,46 @@
+1000000
+	Synchronized Tiempo(milisegundos): 0.249349
+	Semaphore Tiempo(milisegundos): 0.265288
+	ReentrantLock Tiempo(milisegundos): 0.252545
+	Atomic Tiempo(milisegundos): 10.73536
+
+5000000
+	Synchronized Tiempo(milisegundos): 1.233961
+	Semaphore Tiempo(milisegundos): 0.902651
+	ReentrantLock Tiempo(milisegundos): 1.441783
+	Atomic Tiempo(milisegundos): 24.428265
+10000000
+	Synchronized Tiempo(milisegundos): 1.595868
+	Semaphore Tiempo(milisegundos): 2.238992
+	ReentrantLock Tiempo(milisegundos): 2.423903
+	Atomic Tiempo(milisegundos): 44.949447
+15000000
+	Synchronized Tiempo(milisegundos): 2.084699
+	Semaphore Tiempo(milisegundos): 4.333342
+	ReentrantLock Tiempo(milisegundos): 3.255094
+	Atomic Tiempo(milisegundos): 67.868168
+20000000
+	Synchronized Tiempo(milisegundos): 3.467889
+	Semaphore Tiempo(milisegundos): 3.6691
+	ReentrantLock Tiempo(milisegundos): 4.560602
+	Atomic Tiempo(milisegundos): 86.962183
+25000000
+	Synchronized Tiempo(milisegundos): 4.502659
+	Semaphore Tiempo(milisegundos): 2.478879
+	ReentrantLock Tiempo(milisegundos): 5.546753
+	Atomic Tiempo(milisegundos): 108.311521
+30000000
+	Synchronized Tiempo(milisegundos): 6.154643
+	Semaphore Tiempo(milisegundos): 7.103825
+	ReentrantLock Tiempo(milisegundos): 6.660616
+	Atomic Tiempo(milisegundos): 132.03942
+40000000
+	Synchronized Tiempo(milisegundos): 8.786265
+	Semaphore Tiempo(milisegundos): 8.17255
+	ReentrantLock Tiempo(milisegundos): 8.333397
+	Atomic Tiempo(milisegundos): 172.863724
+50000000
+	Synchronized Tiempo(milisegundos): 10.848205
+	Semaphore Tiempo(milisegundos): 11.747538
+	ReentrantLock Tiempo(milisegundos): 11.238527
+	Atomic Tiempo(milisegundos): 215.533324
