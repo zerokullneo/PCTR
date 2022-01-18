@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/PCTR-Problemas/RelacionProblemas5/Ejercicio1/Ejercicio1.iml" filepath="$PROJECT_DIR$/PCTR-Problemas/RelacionProblemas5/Ejercicio1/Ejercicio1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/PCTR.iml" filepath="$PROJECT_DIR$/.idea/PCTR.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PCTR-Problemas/arrayCircular/arrayCircular/arrayCircular.iml" filepath="$PROJECT_DIR$/PCTR-Problemas/arrayCircular/arrayCircular/arrayCircular.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PCTR-Codigos/Codigos_tema7/monitorImpresoras/monitorImpresoras.iml" filepath="$PROJECT_DIR$/PCTR-Codigos/Codigos_tema7/monitorImpresoras/monitorImpresoras.iml" />
+    </modules>
+  </component>
+</project>
