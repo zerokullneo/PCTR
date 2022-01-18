@@ -73,10 +73,26 @@
       <workItem from="1634884871559" duration="1300000" />
       <workItem from="1635348886966" duration="19000" />
       <workItem from="1639280645464" duration="1847000" />
+      <workItem from="1641600213451" duration="1178000" />
+      <workItem from="1641645665194" duration="10076000" />
+      <workItem from="1641732088098" duration="13076000" />
+      <workItem from="1642092282554" duration="25000" />
+      <workItem from="1642149451891" duration="3873000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file:///usr/include/semaphore.h</url>
+          <line>57</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
