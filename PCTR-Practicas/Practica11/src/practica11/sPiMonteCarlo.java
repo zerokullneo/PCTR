@@ -31,46 +31,95 @@ import java.util.*;
 import java.lang.*;
 
 /**Descripcion
- * 
+ * Servidor PiMonteCarlo que recoje las peticiones de calculos de los clientes relacionados
+ * con éste servidor.
  */
-public class sPiMonteCarlo  extends UnicastRemoteObject implements iPiMonteCarlo
+public class sPiMonteCarlo extends UnicastRemoteObject implements iPiMonteCarlo
 {
-     public static int nPuntosTotal;
-     public static double x;
-     public static double y;
-     public static double cont = 0;
+	/**
+	 * Atributo numero de puntos totales que se evaluaran en la aproximacion
+	 * de la integral MonteCarlo.
+	 */
+	public static int nPuntosTotal;
 
-     public sPiMonteCarlo() throws RemoteException{}
+	/**
+	 * Atributo Coordenada x del punto.
+	 */
+	public static double x;
 
-     public synchronized void reset() throws RemoteException
-     {
-	x = 0;
-	y = 0;
-	nPuntosTotal = 0;
-	cont = 0;
-	System.out.println("Aproximacion reseteada, valor actual: 0");
-     }
+	/**
+	 * Atributo Coordenada y del punto.
+	 */
+	public static double y;
 
-     public synchronized void masPuntos(int nPuntos) throws RemoteException
-     {
-	nPuntosTotal += nPuntos;
+	/**
+	 * Atributo Numero de punton tetales que estan dentro de la aproximacion
+	 * de la integral MonteCarlo.
+	 */
+	public static double cont = 0;
 
-	for(int i = 0; i < nPuntos; i++)
+	/**
+	 * Constructor por defecto declarado para la captura de excepciones.
+	 * @throws RemoteException 
+	 */
+	public sPiMonteCarlo() throws RemoteException{}
+
+	/**
+	 * Metodo para reiniciar el calculo de puntos de la aproximacion.
+	 * @throws RemoteException 
+	 */
+	public synchronized void reset() throws RemoteException
 	{
-	     x = Math.random();
-	     y = Math.random();
-
-	     if((Math.pow(x,2) + Math.pow(y,2)) <= 1)
-		cont++;
+		x = 0;
+		y = 0;
+		nPuntosTotal = 0;
+		cont = 0;
+		System.out.println("Aproximacion reseteada, valor actual: 0");
 	}
 
-	System.out.println("Puntos generados: " + nPuntos + ", la nueva aproximacion es: " + (4*cont/nPuntosTotal));
-     }
+	/**
+	 * Metodo que recibe una determinada cantidad de puntos a verificar si estan
+	 * dentro de la integral.
+	 * @param nPuntos Cantidad de puntos a verificar por el metodo MonteCarlo
+	 * @throws RemoteException 
+	 */
+	public synchronized void masPuntos(int nPuntos) throws RemoteException
+	{
+		nPuntosTotal += nPuntos;
 
-     public static void main(String[] args) throws Exception
-     {
-	iPiMonteCarlo ObRemoto = new sPiMonteCarlo(); //Se crea un objeto remoto
-	Naming.bind("//localhost/Servidor",ObRemoto); //Se registra el servicio
-	System.out.println("APROXIMACION DEL NUMERO PI POR EL METODO DE MONTE CARLO");
-     }
+		for(int i = 0; i < nPuntos; i++)
+		{
+			x = Math.random();
+			y = Math.random();
+
+			if((Math.pow(x,2) + Math.pow(y,2)) <= 1)
+			cont++;
+		}
+
+		//System.out.println("Puntos generados: " + nPuntos + ", la nueva aproximacion es: " + );
+	}
+
+	/**
+	 * Metodo observador que devuelve el valor actual de la aproximacion.
+	 * @return Devuelve el calculo de puntos dentro de la aproximacion.
+	 * @throws RemoteException 
+	 */
+	public double aproxActual() throws RemoteException
+	{
+		return (4*cont/nPuntosTotal);
+	}
+
+	public static void main(String[] args) throws Exception
+	{
+		try
+		{
+			iPiMonteCarlo ObRemoto = new sPiMonteCarlo(); //Se crea un objeto remoto
+			Naming.bind("ServerMonteCarlo", ObRemoto); //Se registra el servicio
+			System.out.println("SERVIDOR APROXIMACION DEL NUMERO PI POR EL METODO DE MONTE CARLO");
+		}
+		catch(Exception e)
+		{
+			System.out.println("Problemas en el servidor MonteCarlo..." + e.getMessage());
+		}
+	}
 }

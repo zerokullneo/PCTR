@@ -29,10 +29,29 @@ import java.io.*;
 import java.rmi.*;
 
 /**Descripcion
- * 
+ * Interfaz que tiene como funcion establecer la comunicacion en ambos sentidos entre
+ * el servidor y el cliente para el calculo de la integral MonteCarlo.
  */
 public interface iPiMonteCarlo extends Remote
 {
+	/**
+	 * Metodo para reiniciar el calculo de puntos de la aproximacion.
+	 * @throws RemoteException 
+	 */
      public void reset() throws RemoteException;
-     public void masPuntos(int nPuntos) throws RemoteException;
+
+	/**
+	 * Metodo que recibe una determinada cantidad de puntos a verificar si estan
+	 * dentro de la aproximacion.
+	 * @param nPuntos Cantidad de puntos a verificar por el metodo MonteCarlo
+	 * @throws RemoteException 
+	 */
+	public void masPuntos(int nPuntos) throws RemoteException;
+
+	/**
+	 * Metodo observador que devuelve el valor actual de la aproximacion.
+	 * @return Devuelve el calculo de puntos dentro de la aproximacion.
+	 * @throws RemoteException 
+	 */
+	public double aproxActual() throws RemoteException;
 }

@@ -29,40 +29,44 @@ import java.rmi.registry.*;
 import java.util.*;
 
 /**Descripcion
- * 
+ * Cliente que lanza las peticiones sobre el servidor PiMonteCarlo.
  */
 public class cPiMonteCarlo
 {
-     public static void main(String[] args) throws Exception
-     {
-	int puntos = 0;
-	int op;
-	Scanner r = new Scanner(System.in);
-	iPiMonteCarlo RefObRemoto = (iPiMonteCarlo)Naming.lookup("//localhost/Servidor");
-
-	do
+	public static void main(String[] args) throws Exception
 	{
-		System.out.println("-------MENU------.");
-		System.out.println("Indique que desea hacer:");
-		System.out.println("1. Añadir mas puntos a la aproximacion");
-		System.out.println("2. Resetear la aproximacion");
-		System.out.println("0. Salir");
-		System.out.println("OPCION: ");
-	     op = r.nextInt();
+		/**
+		 * puntos solicitados por la entrada estandar.
+		 */
+		int puntos = 0;
+		int op;
+		Scanner r = new Scanner(System.in);
+		iPiMonteCarlo RefObRemoto = (iPiMonteCarlo)Naming.lookup("//localhost/ServerMonteCarlo");
 
-	     switch(op)
-	     {
-		case 1:
-		     System.out.print("Indique cuantos puntos desea añadir: ");
-		     puntos = r.nextInt();
-		     RefObRemoto.masPuntos(puntos);
-		     break;
-		case 2:
-		     RefObRemoto.reset();
-		     break;
-		case 3:
-		     break;
-	     }
-	}while(op != 0);
-     }
+		do
+		{
+			System.out.println("-------MENU------.");
+			System.out.println("Indique que desea hacer:");
+			System.out.println("1. Añadir mas puntos a la aproximacion");
+			System.out.println("2. Resetear la aproximacion");
+			System.out.println("0. Salir");
+			System.out.println("OPCION: ");
+			op = r.nextInt();
+
+			switch(op)
+			{
+				case 1:
+					System.out.print("Indique cuantos puntos desea añadir: ");
+					puntos = r.nextInt();
+					RefObRemoto.masPuntos(puntos);
+					System.out.println("Puntos generados: " + puntos + ", la nueva aproximacion es: " + RefObRemoto.aproxActual());
+					break;
+				case 2:
+					RefObRemoto.reset();
+					break;
+				case 0:
+					break;
+			}
+		}while(op != 0);
+	}
 }

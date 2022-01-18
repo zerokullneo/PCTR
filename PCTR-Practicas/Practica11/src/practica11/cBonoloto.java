@@ -29,37 +29,36 @@ import java.net.*;
 import java.rmi.*;
 
 /**Descripcion
- * 
+ * Cliente que lanza las peticiones sobre el servidor de Bonoloto.
  */
 public class cBonoloto
 {
-     public static void main(String[]args)
-     {
-	try
+	public static void main(String[]args)
 	{
-	     iBonoloto ORemoto = (iBonoloto)Naming.lookup("//localhost/Servidor");
-	     ORemoto.resetServidor();
-	     int [] a = new int[6];
-	     Scanner p = new Scanner(System.in);
+		try
+		{
+			iBonoloto ORemoto = (iBonoloto)Naming.lookup("//localhost/ServerBonoloto");
+			ORemoto.resetServidor();
+			int [] a = new int[6];
+			Scanner p = new Scanner(System.in);
 
-	     System.out.println("Introduce apuesta:");
+			System.out.println("Introduzca los 6 numeros de su apuesta:");
 
-	     for(int i = 0; i < 6; i++)
-		a[i] = p.nextInt();
+			for(int i = 0; i < 6; i++)
+				a[i] = p.nextInt();
 
-	     boolean acierto = ORemoto.compApuesta(a);
+			boolean acierto = ORemoto.compApuesta(a);
 
-	     if(acierto)
-		System.out.println("Apuesta premiada");
-	     else
-		System.out.println("Apuesta no premiada");
+			if(acierto)
+				System.out.println("Apuesta premiada");
+			else
+				System.out.println("Apuesta no premiada");
+		}
+		catch(Exception e)
+		{
+			System.out.println("Problema en cliente..." + e);
+		}
 
-	}
-	catch(Exception e)
-	{
-	     System.out.println("Problema en cliente..." + e);
-	}
-
-	System.out.println("Cliente Terminado.");
+		System.out.println("Cliente Terminado.");
      }
 }

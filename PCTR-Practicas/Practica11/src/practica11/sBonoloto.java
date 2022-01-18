@@ -31,55 +31,81 @@ import java.rmi.*;
 import java.net.*;
 
 /**Descripcion
- * 
+ * Servidor Bonoloto que recoje las peticiones de apuestas de los clientes relacionados
+ * con éste servidor.
  */
 public class sBonoloto extends UnicastRemoteObject implements iBonoloto
 {
-     public int [] Apuesta = new int[6];
-     private final int nNumeros = 49;
+	/**
+	 * Atributo vector que guarda la apuesta actual generada por el servidor.
+	 */
+	public int [] Apuesta = new int[6];
 
-     public sBonoloto() throws RemoteException
-     {
-	super();
-     }
+	/**
+	 * Atributo que indica la cantidad de numeros que pueden ser seleccionados, nuestro caso
+	 * particular 49 numeros simulando la Bonoloto española.
+	 */
+	private final int nNumeros = 49;
 
-     public void resetServidor() throws RemoteException
-     {
-	Random p = new Random();
-
-	for(int i = 0; i < Apuesta.length; i++)
+	/**
+	 * Constructor por defecto declarado para la captura de excepciones.
+	 * @throws RemoteException 
+	 */
+	public sBonoloto() throws RemoteException
 	{
-	     int n = p.nextInt(nNumeros);
-	     Apuesta[i] = n + 1;
-	     System.out.println(Apuesta[i]);
+		super();
 	}
-     }
 
-     public boolean compApuesta(int[] apuesta) throws RemoteException
-     {
-	Arrays.sort(Apuesta);
-	Arrays.sort(apuesta);
-
-	for(int i = 0; i < Apuesta.length; i++)
-	     if(Apuesta[i] != apuesta[i])
-		return false;
-
-	return true;
-     }
-
-     public static void main(String[]args)
-     {
-	try
+	/**
+	 * Metodo que reinicia la apuesta generada para simular una nueva apuesta con distintos numeros.
+	 * @throws RemoteException 
+	 */
+	public void resetServidor() throws RemoteException
 	{
-	     iBonoloto ORemoto = new sBonoloto();
+		Random p = new Random();
 
-	     Naming.bind("//localhost/Servidor", ORemoto);
-
-	     System.out.println("Servidor preparado");
+		for(int i = 0; i < Apuesta.length; i++)
+		{
+			int n = p.nextInt(nNumeros);
+			Apuesta[i] = n + 1;
+			System.out.print(Apuesta[i] + " ");
+		}
+		System.out.println("");
 	}
-	catch (Exception e)
+
+	/**
+	 * Metodo que compara los vectores, el primero de la apuesta generada y el segundo de la
+	 * apuesta del cliente pasada por parametro.
+	 * @param apuesta parametro que recoje la apuesta del cliente para su verificacion.
+	 * @return Devuelve "true" si los 6 numeros coinciden exactamente, y "false" si hay
+	 * al menos un numero de diferencia.
+	 * @throws RemoteException 
+	 */
+	public boolean compApuesta(int[] apuesta) throws RemoteException
 	{
-	     System.out.println("Problemas en el servidor..." + e);
+		Arrays.sort(Apuesta);
+		Arrays.sort(apuesta);
+
+		for(int i = 0; i < Apuesta.length; i++)
+			if(Apuesta[i] != apuesta[i])
+				return false;
+
+		return true;
 	}
-     }
+
+	public static void main(String[]args)
+	{
+		try
+		{
+			iBonoloto ORemoto = new sBonoloto();
+
+			Naming.bind("ServerBonoloto", ORemoto);
+
+			System.out.println("Servidor Bonoloto preparado");
+		}
+		catch (Exception e)
+		{
+			System.out.println("Problemas en el servidor Bonoloto..." + e.getMessage());
+		}
+	}
 }

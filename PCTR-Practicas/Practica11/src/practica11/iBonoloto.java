@@ -27,10 +27,24 @@
 import java.rmi.*;
 
 /**Descripcion
- * 
+ * Interfaz que tiene como funcion establecer la comunicacion en ambos sentidos entre
+ * el servidor y el cliente para una simple simulacion de apuestas de Bonoloto.
  */
 public interface iBonoloto extends Remote
 {
-     public void resetServidor() throws RemoteException;
-     public boolean compApuesta(int[] apuesta)  throws RemoteException;
+	/**
+	 * Metodo que reinicia la apuesta generada para simular una nueva apuesta con distintos numeros.
+	 * @throws RemoteException 
+	 */
+	public void resetServidor() throws RemoteException;
+
+	/**
+	 * Metodo que compara los vectores, el primero de la apuesta generada y el segundo de la
+	 * apuesta del cliente pasada por parametro.
+	 * @param apuesta parametro que recoje la apuesta del cliente para su verificacion.
+	 * @return Devuelve "true" si los 6 numeros coinciden exactamente, y "false" si hay
+	 * al menos un numero de diferencia.
+	 * @throws RemoteException 
+	 */
+	public boolean compApuesta(int[] apuesta)  throws RemoteException;
 }
