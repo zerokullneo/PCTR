@@ -18,6 +18,7 @@ public class ejEntrelazado extends Thread {
     public static void main(String[] args)
     	throws InterruptedException
     {
+        ejEntrelazado hilo = new ejEntrelazado();
        ejEntrelazado[] t = new ejEntrelazado[nHilos];
        for(int i=0; i<t.length; i++)
        	t[i] =new ejEntrelazado();
