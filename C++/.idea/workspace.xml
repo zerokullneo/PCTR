@@ -50,6 +50,7 @@
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -78,6 +79,10 @@
       <workItem from="1641732088098" duration="13076000" />
       <workItem from="1642092282554" duration="25000" />
       <workItem from="1642149451891" duration="3873000" />
+      <workItem from="1642510911965" duration="8800000" />
+      <workItem from="1642588592436" duration="32051000" />
+      <workItem from="1642763323754" duration="2540000" />
+      <workItem from="1642770510085" duration="390000" />
     </task>
     <servers />
   </component>
